@@ -10,10 +10,11 @@ export const AuthProvider = ({ isLoggedIn: isLoggedInProps, children }) => {
 	const [ isLoggedIn, setIsLoggedIn ] = useState(isLoggedInProps);
 
 	// 로그인 함수
-	const logUserIn = async () => {
+	const logUserIn = async (token) => {
 		try {
 			// 로그인시 AsyncStorage에 isLoggedIn을 true로 만들어줌
 			await AsyncStorage.setItem('isLoggedIn', 'true');
+			await AsyncStorage.setItem('jwt', token);
 			setIsLoggedIn(true);
 		} catch (e) {
 			console.log(e);

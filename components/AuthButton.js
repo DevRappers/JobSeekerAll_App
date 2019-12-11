@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import constants from '../constants';
 import PropTypes from 'prop-types';
+import { ActivityIndicator } from 'react-native';
 
 const Touchable = styled.TouchableOpacity``;
 const Container = styled.View`
@@ -18,15 +19,14 @@ const Text = styled.Text`
 	font-size: 18px;
 `;
 
-const AuthButtton = ({ text, onPress }) => (
-	<Touchable onPress={onPress}>
-		<Container>
-			<Text>{text}</Text>
-		</Container>
+const AuthButtton = ({ text, onPress, loading = false }) => (
+	<Touchable disabled={loading} onPress={onPress}>
+		<Container>{loading ? <ActivityIndicator color="white" /> : <Text>{text}</Text>}</Container>
 	</Touchable>
 );
 
 AuthButtton.propTypes = {
+	loading: PropTypes.bool,
 	text: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired
 };

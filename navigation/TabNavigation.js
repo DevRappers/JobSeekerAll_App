@@ -7,25 +7,50 @@
     Profile : 내정보 화면 
     Search : 검색하는 화면 
 */
+import React from 'react';
 import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../screens/Tabs/Home';
 import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
+import MessagesLink from '../components/MessagesLink';
+
+// 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
+// tab네비게이션을 스택네비게이션으로 만들어주는 과정
+const stackFactory = (initialRoute, customConfig) =>
+	createStackNavigator({ InitialRout: { screen: initialRoute, navigationOptions: { ...customConfig } } });
 
 const TabNavigation = createBottomTabNavigator({
-	Home,
-	Study,
+	Home: {
+		screen: stackFactory(Home, {
+			title: 'Home',
+			headerRight: <MessagesLink />
+		})
+	},
+	Study: {
+		screen: stackFactory(Study, {
+			title: 'Study'
+		})
+	},
 	Add: {
-		screen: View,
+		screen: () => <View />,
 		navigationOptions: {
 			tabBarOnPress: ({ navigation }) => navigation.navigate('PostNavigation')
 		}
 	},
-	Hobby,
-	Profile
+	Hobby: {
+		screen: stackFactory(Hobby, {
+			title: 'Hobby'
+		})
+	},
+	Profile: {
+		screen: stackFactory(Profile, {
+			title: 'Profile'
+		})
+	}
 });
 
 export default createAppContainer(TabNavigation);

@@ -43,7 +43,9 @@ export default function App() {
 				...apolloClientOptions
 			});
 
+			// AsyncStorage에서 로그인상태를 가져온다.
 			const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+			// 기기에 저장된 로그인 정보가 false이거나 null이면 로그인상태를 false로 설정해주고, true일 경우 로그인상태를 true로 처리
 			if (!isLoggedIn || isLoggedIn === 'false') {
 				setIsLoggedIn(false);
 			} else {

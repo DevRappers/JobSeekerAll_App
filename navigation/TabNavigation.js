@@ -14,18 +14,14 @@ import Home from '../screens/Tabs/Home';
 import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
-import Search from '../screens/Tabs/Search';
 
 const TabNavigation = createBottomTabNavigator({
 	Home,
 	Study,
-	Search,
 	Add: {
 		screen: View,
 		navigationOptions: {
-			tabBarOnPress: () => {
-				console.log('Add');
-			}
+			tabBarOnPress: ({ navigation }) => navigation.navigate('PostNavigation')
 		}
 	},
 	Hobby,

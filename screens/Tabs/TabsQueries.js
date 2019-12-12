@@ -6,6 +6,7 @@ export const STUDY_QUERY = gql`
 			id
 			user {
 				id
+				avatar
 				username
 			}
 			title
@@ -16,6 +17,7 @@ export const STUDY_QUERY = gql`
 			startTime
 			endTime
 			studyEnd
+			createdAt
 		}
 	}
 `;

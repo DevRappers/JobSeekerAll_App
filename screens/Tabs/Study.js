@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import { STUDY_QUERY } from './TabsQueries';
+import StudyPost from '../../components/StudyPost';
 
 const View = styled.View`
 	justify-content: center;
@@ -27,7 +28,7 @@ export default () => {
 	};
 	return (
 		<ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
-			{loading ? <Loader /> : <Text>Hello</Text>}
+			{loading ? <Loader /> : data && data.allStudy.map((study) => <StudyPost key={study.id} {...study} />)}
 		</ScrollView>
 	);
 };

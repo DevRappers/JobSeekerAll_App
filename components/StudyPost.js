@@ -7,7 +7,9 @@ import constants from '../constants';
 const Container = styled.TouchableOpacity`
 	background-color: ${(props) => (props.studyEnd === '2' ? props.theme.darkGreyColor : props.theme.whiteColor)};
 	border-radius: 50px;
-	width: ${constants.width};
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 	border: 7px solid #c3fae8;
 	border-color: ${(props) => (props.studyEnd === '2' ? props.theme.blackColor : '#c3fae8')};
 `;

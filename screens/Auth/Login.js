@@ -18,7 +18,7 @@ const View = styled.View`
 	flex: 1;
 `;
 
-const Views = styled.View`height: 60px;`;
+const Views = styled.View`margin-bottom: 30px;`;
 const Touchable = styled.TouchableOpacity``;
 const LoginLink = styled.View``;
 
@@ -31,7 +31,7 @@ const LoginLinkText = styled.Text`
 
 export default ({ navigation }) => {
 	// emailInput과 passwordInput
-	const emailInput = useInput('');
+	const emailInput = useInput(navigation.getParam('email', ''));
 	const passwordInput = useInput('');
 
 	// 로딩 상태 관리

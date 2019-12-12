@@ -17,3 +17,23 @@ export const LOG_IN = gql`
 		confirmPassword(email: $email, password: $password)
 	}
 `;
+
+export const CREATE_ACCOUNT = gql`
+	mutation createAccount(
+		$username: String!
+		$email: String!
+		$password: String!
+		$age: Int!
+		$department: String!
+		$area: String
+	) {
+		createAccount(
+			username: $username
+			email: $email
+			password: $password
+			age: $age
+			department: $department
+			area: $area
+		)
+	}
+`;

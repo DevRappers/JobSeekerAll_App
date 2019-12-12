@@ -72,7 +72,6 @@ export default ({ navigation }) => {
 		try {
 			setLoading(true);
 			const { data: { confirmPassword } } = await loginMutation();
-			console.log(confirmPassword);
 			if (confirmPassword === '2') {
 				const { data: { requestSecret } } = await requestSecretMutation();
 				Alert.alert('이메일 인증을 부탁드립니다. 발송된 메일을 확인해주세요.');

@@ -8,7 +8,7 @@
     Search : 검색하는 화면 
 */
 import React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -17,40 +17,86 @@ import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
 import MessagesLink from '../components/MessagesLink';
+import NavIcon from '../components/NavIcon';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
 const stackFactory = (initialRoute, customConfig) =>
-	createStackNavigator({ InitialRout: { screen: initialRoute, navigationOptions: { ...customConfig } } });
+	createStackNavigator({
+		InitialRout: {
+			screen: initialRoute,
+			navigationOptions: {
+				...customConfig,
+				headerStyle: { backgroundColor: '' }
+			}
+		}
+	});
 
-const TabNavigation = createBottomTabNavigator({
-	Home: {
-		screen: stackFactory(Home, {
-			title: 'Home',
-			headerRight: <MessagesLink />
-		})
-	},
-	Study: {
-		screen: stackFactory(Study, {
-			title: 'Study'
-		})
-	},
-	Add: {
-		screen: () => <View />,
-		navigationOptions: {
-			tabBarOnPress: ({ navigation }) => navigation.navigate('PostNavigation')
+const TabNavigation = createBottomTabNavigator(
+	{
+		Home: {
+			screen: stackFactory(Home, {
+				headerRight: <MessagesLink />,
+				title: '취준모아'
+			}),
+			navigationOptions: {
+				tabBarIcon: ({ focused }) => (
+					<NavIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'} />
+				),
+				tabBarLabel: '홈'
+			}
+		},
+		Study: {
+			screen: stackFactory(Study, {
+				title: '스터디'
+			}),
+			navigationOptions: {
+				tabBarIcon: ({ focused }) => (
+					<NavIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-book' : 'md-book'} />
+				),
+				tabBarLabel: '스터디'
+			}
+		},
+		Add: {
+			screen: () => <View />,
+			navigationOptions: {
+				tabBarOnPress: ({ navigation }) => navigation.navigate('PostNavigation'),
+				tabBarIcon: ({ focused }) => (
+					<NavIcon focused={focused} size={28} name={Platform.OS === 'ios' ? 'ios-add' : 'md-add'} />
+				),
+				tabBarLabel: '빠른추가'
+			}
+		},
+		Hobby: {
+			screen: stackFactory(Hobby, {
+				title: '취미모임'
+			}),
+			navigationOptions: {
+				tabBarIcon: ({ focused }) => (
+					<NavIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-heart' : 'md-heart'} />
+				),
+				tabBarLabel: '취미모임'
+			}
+		},
+		Profile: {
+			screen: stackFactory(Profile, {
+				title: '내정보'
+			}),
+			navigationOptions: {
+				tabBarIcon: ({ focused }) => (
+					<NavIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'} />
+				),
+				tabBarLabel: '내정보'
+			}
 		}
 	},
-	Hobby: {
-		screen: stackFactory(Hobby, {
-			title: 'Hobby'
-		})
-	},
-	Profile: {
-		screen: stackFactory(Profile, {
-			title: 'Profile'
-		})
+	{
+		tabBarOptions: {
+			style: {
+				backgroundColor: '#FAFAFA'
+			}
+		}
 	}
-});
+);
 
 export default createAppContainer(TabNavigation);

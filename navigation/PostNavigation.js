@@ -11,6 +11,7 @@ import NewHobby from '../screens/Post/NewHobby';
 import NewStudy from '../screens/Post/NewStudy';
 import UploadPost from '../screens/Post/UploadPost';
 import { createStackNavigator } from 'react-navigation-stack';
+import { stackStyles } from './config';
 
 const PostTabs = createMaterialTopTabNavigator(
 	{
@@ -22,7 +23,16 @@ const PostTabs = createMaterialTopTabNavigator(
 	}
 );
 
-export default createStackNavigator({
-	PostTabs,
-	UploadPost
-});
+export default createStackNavigator(
+	{
+		PostTabs,
+		UploadPost
+	},
+	{
+		defaultNavigationOptions: {
+			headerStyle: {
+				...stackStyles
+			}
+		}
+	}
+);

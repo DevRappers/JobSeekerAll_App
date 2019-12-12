@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import styles from '../styles';
 
-const NavIcon = ({ focused = true, name, color = styles.blackColor, size = 22 }) => (
+const NavIcon = ({ focused = true, name, color = styles.mintColor, size = 22 }) => (
 	<Ionicons name={name} color={focused ? color : styles.darkGreyColor} size={size} />
 );
 

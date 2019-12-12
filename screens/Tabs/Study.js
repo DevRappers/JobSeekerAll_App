@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl, Platform } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import styled from 'styled-components';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
-import { STUDY_QUERY } from './TabsQueries';
+import { SEARCH_STUDY_QUERY } from './TabsQueries';
 import StudyPost from '../../components/StudyPost';
-import SearchBar from '../../components/SearchBar';
+//import SearchBar from '../../components/SearchBar';
 
 const View = styled.View`
 	justify-content: center;
@@ -18,12 +19,17 @@ const Container = styled.View``;
 
 export default ({ navigation }) => {
 	const [ refreshing, setRefreshing ] = useState(false);
-	const { loading, data, refetch } = useQuery(STUDY_QUERY);
-	const [ term, setTerm ] = useState(navigation.getParam('term', ''));
+	const [ term, setTerm ] = useState('');
+	const { loading, data, refetch } = useQuery(SEARCH_STUDY_QUERY, {
+		variables: {
+			term
+		}
+	});
+
 	const refresh = async () => {
 		try {
 			setRefreshing(true);
-			await refetch();
+			await refetch({ variables: { term } });
 		} catch (e) {
 			console.log(e);
 		} finally {
@@ -32,17 +38,14 @@ export default ({ navigation }) => {
 	};
 	const onChange = (text) => {
 		setTerm(text);
-		navigation.setParams({
-			term: text
-		});
 	};
-	const onSubmit = () => {
-		console.log(term);
+	const onSubmit = async () => {
+		await refetch({ variables: { term } });
 	};
 	return (
 		<ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
-			<SearchBar value={navigation.getParam('term', '')} onChange={onChange} onSubmit={onSubmit} />
-			{loading ? <Loader /> : data && data.allStudy.map((study) => <StudyPost key={study.id} {...study} />)}
+			<SearchBar value={term} onChangeText={onChange} onSubmit={onSubmit} platform={Platform.OS === 'ios' ? 'ios' : 'android'} placeholder="스터디 검색" />
+			{loading ? <Loader /> : data && data.searchStudy.map((study) => <StudyPost key={study.id} {...study} />)}
 		</ScrollView>
 	);
 };

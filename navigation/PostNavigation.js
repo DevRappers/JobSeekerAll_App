@@ -10,22 +10,51 @@ import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import NewHobby from '../screens/Post/NewHobby';
 import NewStudy from '../screens/Post/NewStudy';
 import UploadPost from '../screens/Post/UploadPost';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, HeaderTitle } from 'react-navigation-stack';
 import { stackStyles } from './config';
+import styles from '../styles';
 
 const PostTabs = createMaterialTopTabNavigator(
 	{
-		NewHobby,
-		NewStudy
+		NewHobby: {
+			screen: NewHobby,
+			navigationOptions: {
+				tabBarLabel: '취미모임 만들기'
+			}
+		},
+		NewStudy: {
+			screen: NewStudy,
+			navigationOptions: {
+				tabBarLabel: '스터디 만들기'
+			}
+		}
 	},
 	{
-		tabBarPosition: 'bottom'
+		tabBarPosition: 'top',
+		tabBarOptions: {
+			indicatorStyle: {
+				backgroundColor: styles.mintColor,
+				marginBottom: 0
+			},
+			labelStyle: {
+				color: styles.blackColor,
+				fontWeight: '600'
+			},
+			style: {
+				...stackStyles
+			}
+		}
 	}
 );
 
 export default createStackNavigator(
 	{
-		PostTabs,
+		Tabs: {
+			screen: PostTabs,
+			navigationOptions: {
+				title: '빠른추가'
+			}
+		},
 		UploadPost
 	},
 	{

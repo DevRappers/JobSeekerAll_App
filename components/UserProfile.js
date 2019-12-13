@@ -1,5 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Alert } from 'react-native';
+import { gql } from 'apollo-boost';
+import { useMutation } from 'react-apollo-hooks';
 import { ListItem, Avatar } from 'react-native-elements';
 import styled from 'styled-components';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +10,14 @@ import constants from '../constants';
 import PropTypes from 'prop-types';
 import { useLogOut } from '../AuthContext';
 
-const UserProfile = ({ avatar, username, email }) => {
+const UserProfile = ({ id, avatar, username, email }) => {
+	const DELETE_USER = gql`
+		mutation deleteUser {
+			deleteUser
+		}
+	`;
+	const [ deleteUserMutation ] = useMutation(DELETE_USER);
+
 	const logOut = useLogOut();
 	const logOutButton = () => {
 		Alert.alert(
@@ -21,6 +30,27 @@ const UserProfile = ({ avatar, username, email }) => {
 					style: 'cancel'
 				},
 				{ text: '확인', onPress: () => logOut() }
+			],
+			{ cancelable: false }
+		);
+	};
+	const delUser = () => {
+		Alert.alert(
+			'정말 회원탈퇴 하시겠습니까?',
+			'',
+			[
+				{
+					text: '취소',
+					onPress: () => console.log('회원탈퇴 취소'),
+					style: 'cancel'
+				},
+				{
+					text: '확인',
+					onPress: () => {
+						deleteUserMutation();
+						logOut();
+					}
+				}
 			],
 			{ cancelable: false }
 		);
@@ -44,7 +74,7 @@ const UserProfile = ({ avatar, username, email }) => {
 			<TouchableOpacity>
 				<ListItem title={'나의 취미모임'} bottomDivider chevron />
 			</TouchableOpacity>
-			<TouchableOpacity>
+			<TouchableOpacity onPress={delUser}>
 				<ListItem title={'회원탈퇴'} bottomDivider chevron />
 			</TouchableOpacity>
 			<TouchableOpacity onPress={logOutButton}>

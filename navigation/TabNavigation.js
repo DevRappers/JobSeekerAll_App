@@ -37,7 +37,7 @@ const stackFactory = (initialRoute, customConfig) =>
 			navigationOptions: ({ navigation }) => ({
 				headerTintColor: styles.blackColor,
 				title: navigation.getParam('title'),
-				headerRight: <StudyLink />
+				headerRight: navigation.getParam('isMyStudy') ? <StudyLink /> : null
 			})
 		}
 	});

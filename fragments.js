@@ -15,6 +15,7 @@ export const STUDY_FRAGMENT = gql`
 		area
 		time
 		studyEnd
+		isMyStudy
 		createdAt
 	}
 `;

@@ -35,9 +35,9 @@ const End = styled.Text`
 	color: ${(props) => (props.studyEnd === '2' ? props.theme.redColor : props.theme.blueColor)};
 `;
 
-const StudyPost = ({ id, navigation, user, title, job, area, studyEnd }) => {
+const StudyPost = ({ id, navigation, user, title, job, area, studyEnd, isMyStudy }) => {
 	return (
-		<Container studyEnd={studyEnd} onPress={() => navigation.navigate('StudyDetail', { id, title })}>
+		<Container studyEnd={studyEnd} onPress={() => navigation.navigate('StudyDetail', { id, title, isMyStudy })}>
 			<Header>
 				<Touchable>
 					<Image style={{ height: 30, width: 30, borderRadius: 15 }} source={{ uri: user.avatar }} />
@@ -49,8 +49,8 @@ const StudyPost = ({ id, navigation, user, title, job, area, studyEnd }) => {
 				</Touchable>
 			</Header>
 			<Body>
-				<Bold studyEnd={studyEnd}>분야 : {job}</Bold>
 				<Bold studyEnd={studyEnd}>스터디명 : {title}</Bold>
+				<Bold studyEnd={studyEnd}>분야 : {job}</Bold>
 				<Bold studyEnd={studyEnd}>지역 : {area}</Bold>
 				<End studyEnd={studyEnd}>{studyEnd === '2' ? '모집마감' : '모집중'}</End>
 			</Body>
@@ -71,6 +71,7 @@ StudyPost.propTypes = {
 	job: PropTypes.string.isRequired,
 	area: PropTypes.string.isRequired,
 	time: PropTypes.string.isRequired,
+	isMyStudy: PropTypes.bool.isRequired,
 	studyEnd: PropTypes.string.isRequired,
 	createdAt: PropTypes.string.isRequired
 };

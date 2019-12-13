@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -14,9 +15,9 @@ const Container = styled.TouchableOpacity`
 `;
 
 const Header = styled.View`
-	padding: 15px;
 	flex-direction: row;
 	align-items: center;
+	margin-bottom: 10px;
 `;
 
 const Body = styled.View`padding: 15px;`;
@@ -28,6 +29,7 @@ const HeaderUserContainer = styled.View`margin-left: 10px;`;
 const Bold = styled.Text`
 	font-weight: 500;
 	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
+	margin-bottom: 5px;
 `;
 
 const End = styled.Text`
@@ -35,30 +37,46 @@ const End = styled.Text`
 	color: ${(props) => (props.studyEnd === '2' ? props.theme.redColor : props.theme.blueColor)};
 `;
 
-const StudyPost = ({ id, navigation, user, title, job, area, studyEnd }) => {
+const StudyDetailPost = ({
+	id,
+	navigation,
+	user,
+	title,
+	job,
+	area,
+	caption,
+	information,
+	startTime,
+	endTime,
+	studyEnd
+}) => {
 	return (
-		<Container studyEnd={studyEnd} onPress={() => navigation.navigate('StudyDetail', { id, title })}>
-			<Header>
-				<Touchable>
-					<Image style={{ height: 30, width: 30, borderRadius: 15 }} source={{ uri: user.avatar }} />
-				</Touchable>
-				<Touchable>
-					<HeaderUserContainer>
-						<Bold studyEnd={studyEnd}>{user.username}</Bold>
-					</HeaderUserContainer>
-				</Touchable>
-			</Header>
-			<Body>
-				<Bold studyEnd={studyEnd}>분야 : {job}</Bold>
-				<Bold studyEnd={studyEnd}>스터디명 : {title}</Bold>
-				<Bold studyEnd={studyEnd}>지역 : {area}</Bold>
-				<End studyEnd={studyEnd}>{studyEnd === '2' ? '모집마감' : '모집중'}</End>
-			</Body>
-		</Container>
+		<Card title={title}>
+			<View>
+				<Header>
+					<Touchable>
+						<Image style={{ height: 30, width: 30, borderRadius: 15 }} source={{ uri: user.avatar }} />
+					</Touchable>
+					<Touchable>
+						<HeaderUserContainer>
+							<Text>{user.username}</Text>
+						</HeaderUserContainer>
+					</Touchable>
+				</Header>
+				<Bold>분야 : {job}</Bold>
+				<Bold>지역 : {area}</Bold>
+				<Bold>스터디소개 : {caption}</Bold>
+				<Bold>신청방법 :</Bold>
+				<Bold>{information}</Bold>
+				<Bold>시작시간 : {startTime}</Bold>
+				<Bold>끝나는시간 : {endTime}</Bold>
+				<End studyEnd={studyEnd}>현재 {studyEnd === '2' ? '모집마감' : '모집중'}</End>
+			</View>
+		</Card>
 	);
 };
 
-StudyPost.propTypes = {
+StudyDetailPost.propTypes = {
 	id: PropTypes.string.isRequired,
 	user: PropTypes.shape({
 		id: PropTypes.string.isRequired,
@@ -76,4 +94,4 @@ StudyPost.propTypes = {
 	createdAt: PropTypes.string.isRequired
 };
 
-export default StudyPost;
+export default StudyDetailPost;

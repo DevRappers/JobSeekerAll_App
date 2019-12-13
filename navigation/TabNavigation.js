@@ -16,8 +16,11 @@ import Home from '../screens/Tabs/Home';
 import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
+import StudyDetail from '../screens/StudyDetail';
 import MessagesLink from '../components/MessagesLink';
 import NavIcon from '../components/NavIcon';
+import styles from '../styles';
+import StudyLink from '../components/StudyLink';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -28,6 +31,14 @@ const stackFactory = (initialRoute, customConfig) =>
 			navigationOptions: {
 				...customConfig
 			}
+		},
+		StudyDetail: {
+			screen: StudyDetail,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: navigation.getParam('title'),
+				headerRight: <StudyLink />
+			})
 		}
 	});
 

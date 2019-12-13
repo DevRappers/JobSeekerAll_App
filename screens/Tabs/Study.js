@@ -44,8 +44,18 @@ export default ({ navigation }) => {
 	};
 	return (
 		<ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
-			<SearchBar value={term} onChangeText={onChange} onSubmit={onSubmit} platform={Platform.OS === 'ios' ? 'ios' : 'android'} placeholder="스터디 검색" />
-			{loading ? <Loader /> : data && data.searchStudy.map((study) => <StudyPost key={study.id} {...study} />)}
+			<SearchBar
+				value={term}
+				onChangeText={onChange}
+				onSubmit={onSubmit}
+				platform={Platform.OS === 'ios' ? 'ios' : 'android'}
+				placeholder="스터디 검색"
+			/>
+			{loading ? (
+				<Loader />
+			) : (
+				data && data.searchStudy.map((study) => <StudyPost navigation={navigation} key={study.id} {...study} />)
+			)}
 		</ScrollView>
 	);
 };

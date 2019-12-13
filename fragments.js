@@ -13,8 +13,7 @@ export const STUDY_FRAGMENT = gql`
 		information
 		job
 		area
-		startTime
-		endTime
+		time
 		studyEnd
 		createdAt
 	}

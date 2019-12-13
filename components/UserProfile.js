@@ -111,8 +111,7 @@ UserProfile.propTypes = {
 			information: PropTypes.string.isRequired,
 			job: PropTypes.string.isRequired,
 			area: PropTypes.string.isRequired,
-			startTime: PropTypes.string.isRequired,
-			endTime: PropTypes.string.isRequired,
+			time: PropTypes.string.isRequired,
 			createdAt: PropTypes.string,
 			updatedAt: PropTypes.string
 		})

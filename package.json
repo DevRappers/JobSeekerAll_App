@@ -1,40 +1,42 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
-  },
-  "dependencies": {
-    "@expo/vector-icons": "^10.0.6",
-    "apollo-boost": "^0.4.4",
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-cache-persist": "^0.1.1",
-    "expo": "~36.0.0",
-    "expo-asset": "^8.0.0",
-    "expo-facebook": "~8.0.0",
-    "expo-font": "^8.0.0",
-    "expo-google-app-auth": "^8.0.0",
-    "graphql": "^14.5.8",
-    "prop-types": "^15.7.2",
-    "react": "~16.9.0",
-    "react-apollo-hooks": "^0.5.0",
-    "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-elements": "^1.2.7",
-    "react-native-gesture-handler": "^1.5.2",
-    "react-native-reanimated": "^1.4.0",
-    "react-native-swiper": "^1.5.14",
-    "react-native-web": "~0.11.7",
-    "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3",
-    "react-navigation-tabs": "^2.6.2",
-    "styled-components": "^4.4.1"
-  },
-  "devDependencies": {
-    "babel-preset-expo": "~8.0.0"
-  },
-  "private": true
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+        "start": "expo start",
+        "android": "expo start --android",
+        "ios": "expo start --ios",
+        "web": "expo start --web",
+        "eject": "expo eject"
+    },
+    "dependencies": {
+        "@ant-design/react-native": "^3.2.0",
+        "@expo/vector-icons": "^10.0.6",
+        "apollo-boost": "^0.4.4",
+        "apollo-cache-inmemory": "^1.6.3",
+        "apollo-cache-persist": "^0.1.1",
+        "expo": "~36.0.0",
+        "expo-asset": "^8.0.0",
+        "expo-facebook": "~8.0.0",
+        "expo-font": "^8.0.0",
+        "expo-google-app-auth": "^8.0.0",
+        "graphql": "^14.5.8",
+        "prop-types": "^15.7.2",
+        "react": "~16.9.0",
+        "react-apollo-hooks": "^0.5.0",
+        "react-dom": "~16.9.0",
+        "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+        "react-native-elements": "^1.2.7",
+        "react-native-gesture-handler": "^1.5.2",
+        "react-native-picker-module": "^1.2.3",
+        "react-native-reanimated": "^1.4.0",
+        "react-native-swiper": "^1.5.14",
+        "react-native-web": "~0.11.7",
+        "react-navigation": "^4.0.10",
+        "react-navigation-stack": "^1.10.3",
+        "react-navigation-tabs": "^2.6.2",
+        "styled-components": "^4.4.1"
+    },
+    "devDependencies": {
+        "babel-preset-expo": "~8.0.0"
+    },
+    "private": true
 }

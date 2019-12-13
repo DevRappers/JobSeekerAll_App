@@ -26,6 +26,12 @@ const Touchable = styled.TouchableOpacity``;
 
 const HeaderUserContainer = styled.View`margin-left: 10px;`;
 
+const TBold = styled.Text`
+	font-weight: 700;
+	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
+	margin-bottom: 5px;
+`;
+
 const Bold = styled.Text`
 	font-weight: 500;
 	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
@@ -37,19 +43,7 @@ const End = styled.Text`
 	color: ${(props) => (props.studyEnd === '2' ? props.theme.redColor : props.theme.blueColor)};
 `;
 
-const StudyDetailPost = ({
-	id,
-	navigation,
-	user,
-	title,
-	job,
-	area,
-	caption,
-	information,
-	startTime,
-	endTime,
-	studyEnd
-}) => {
+const StudyDetailPost = ({ id, navigation, user, title, job, area, caption, information, time, studyEnd }) => {
 	return (
 		<Card title={title}>
 			<View>
@@ -63,13 +57,19 @@ const StudyDetailPost = ({
 						</HeaderUserContainer>
 					</Touchable>
 				</Header>
-				<Bold>분야 : {job}</Bold>
-				<Bold>지역 : {area}</Bold>
-				<Bold>스터디소개 : {caption}</Bold>
+				<Bold>
+					분야 : <Bold style={{ color: 'purple' }}>{job}</Bold>
+				</Bold>
+				<Bold>
+					지역 : <Bold style={{ color: 'purple' }}>{area}</Bold>
+				</Bold>
+				<Bold>스터디 소개 : </Bold>
+				<Bold style={{ color: 'purple' }}>{caption}</Bold>
 				<Bold>신청방법 :</Bold>
-				<Bold>{information}</Bold>
-				<Bold>시작시간 : {startTime}</Bold>
-				<Bold>끝나는시간 : {endTime}</Bold>
+				<Bold style={{ color: 'purple' }}>{information}</Bold>
+				<Bold>
+					진행일정 : <Bold style={{ color: 'purple' }}>{time}</Bold>
+				</Bold>
 				<End studyEnd={studyEnd}>현재 {studyEnd === '2' ? '모집마감' : '모집중'}</End>
 			</View>
 		</Card>
@@ -88,8 +88,7 @@ StudyDetailPost.propTypes = {
 	information: PropTypes.string.isRequired,
 	job: PropTypes.string.isRequired,
 	area: PropTypes.string.isRequired,
-	startTime: PropTypes.string.isRequired,
-	endTime: PropTypes.string.isRequired,
+	time: PropTypes.string.isRequired,
 	studyEnd: PropTypes.string.isRequired,
 	createdAt: PropTypes.string.isRequired
 };

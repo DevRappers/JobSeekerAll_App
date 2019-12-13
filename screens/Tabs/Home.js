@@ -8,8 +8,6 @@ const View = styled.View`
 	flex: 1;
 `;
 
-const Text = styled.Text``;
-
 export default () => (
 	<View>
 		<Loader />

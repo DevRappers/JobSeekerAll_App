@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-apollo-hooks';
 import { gql } from 'apollo-boost';
-import { STUDY_FRAGMENT } from '../fragments';
-import Loader from '../components/Loader';
-import StudyDetailPost from '../components/StudyDetailPost';
+import { STUDY_FRAGMENT } from '../../fragments';
+import Loader from '../../components/Loader';
+import StudyDetailPost from '../../components/StudyDetailPost';
 
 const STUDY_DETAIL = gql`
     query seeFullStudy($id: String!){

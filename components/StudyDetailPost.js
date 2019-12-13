@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 

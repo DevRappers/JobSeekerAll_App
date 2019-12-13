@@ -16,7 +16,7 @@ import Home from '../screens/Tabs/Home';
 import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
-import StudyDetail from '../screens/StudyDetail';
+import StudyDetail from '../screens/Detail/StudyDetail';
 import MessagesLink from '../components/MessagesLink';
 import NavIcon from '../components/NavIcon';
 import styles from '../styles';

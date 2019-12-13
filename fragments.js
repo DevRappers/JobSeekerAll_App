@@ -19,3 +19,23 @@ export const STUDY_FRAGMENT = gql`
 		createdAt
 	}
 `;
+
+export const USER_FRAGMENT = gql`
+    fragment UserParts on User{
+        id
+        username
+        avatar
+        email
+        phoneNumber
+        age
+        area
+        department
+        isSelf
+        createdAt
+        updatedAt
+        myStudy{
+            ...StudyParts
+        }
+    }
+    ${STUDY_FRAGMENT}
+`;

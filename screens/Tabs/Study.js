@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { ScrollView, RefreshControl, Platform } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, ButtonGroup } from 'react-native-elements';
 import styled from 'styled-components';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import { SEARCH_STUDY_QUERY } from './TabsQueries';
 import StudyPost from '../../components/StudyPost';
-//import SearchBar from '../../components/SearchBar';
+import { JOB_LIST } from '../../DataList';
 
 const View = styled.View`
 	justify-content: center;
@@ -18,6 +18,7 @@ const Text = styled.Text``;
 const Container = styled.View``;
 
 export default ({ navigation }) => {
+	const [ buttonIndex, setButtonIndex ] = useState(0);
 	const [ refreshing, setRefreshing ] = useState(false);
 	const [ term, setTerm ] = useState('');
 	const { loading, data, refetch } = useQuery(SEARCH_STUDY_QUERY, {
@@ -25,6 +26,21 @@ export default ({ navigation }) => {
 			term
 		}
 	});
+
+	const updateIndex = async (selectedIndex) => {
+		if (selectedIndex === 0) {
+			setButtonIndex(selectedIndex);
+			setTerm('');
+		} else {
+			setButtonIndex(selectedIndex);
+			setTerm(JOB_LIST[selectedIndex]);
+		}
+		try {
+			await refetch({ variables: { term } });
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	const refresh = async () => {
 		try {
@@ -45,12 +61,26 @@ export default ({ navigation }) => {
 	return (
 		<ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
 			<SearchBar
-				value={term}
+				value={null}
 				onChangeText={onChange}
 				onSubmit={onSubmit}
 				platform={Platform.OS === 'ios' ? 'ios' : 'android'}
 				placeholder="스터디 검색"
 			/>
+			<ScrollView
+				horizontal={true}
+				showsHorizontalScrollIndicator={false}
+				style={{ marginBottom: 10, marginTop: 10 }}
+			>
+				<ButtonGroup
+					onPress={updateIndex}
+					selectedIndex={buttonIndex}
+					buttons={JOB_LIST}
+					containerStyle={{ height: 20 }}
+					buttonStyle={{ width: 100 }}
+					selectedButtonStyle={{ backgroundColor: '#2BC0BC' }}
+				/>
+			</ScrollView>
 			{loading ? (
 				<Loader />
 			) : (

@@ -21,6 +21,7 @@ import MessagesLink from '../components/MessagesLink';
 import NavIcon from '../components/NavIcon';
 import styles from '../styles';
 import StudyLink from '../components/StudyLink';
+import MyStudy from '../screens/My/MyStudy';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -39,10 +40,17 @@ const stackFactory = (initialRoute, customConfig) =>
 				title: navigation.getParam('title'),
 				headerRight: navigation.getParam('isMyStudy') ? <StudyLink /> : null
 			})
+		},
+		MyStudy: {
+			screen: MyStudy,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '나의 스터디'
+			})
 		}
 	});
 
-const TabNavigation = createBottomTabNavigator(
+export default (TabNavigation = createBottomTabNavigator(
 	{
 		Home: {
 			screen: stackFactory(Home, {
@@ -112,6 +120,4 @@ const TabNavigation = createBottomTabNavigator(
 			}
 		}
 	}
-);
-
-export default createAppContainer(TabNavigation);
+));

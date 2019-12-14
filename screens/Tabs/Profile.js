@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, AsyncStorage } from 'react-native';
 import { gql } from 'apollo-boost';
 import { USER_FRAGMENT } from '../../fragments';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import UserProfile from '../../components/UserProfile';
-import styled from 'styled-components';
 
 export const ME = gql`
   {
@@ -17,10 +16,21 @@ export const ME = gql`
 `;
 
 export default ({ navigation }) => {
-	const { loading, data } = useQuery(ME);
+	const { loading, data, refetch } = useQuery(ME);
+	useEffect(() => {
+		refetchData();
+	}, []);
+
+	const refetchData = async () => {
+		try {
+			await refetch();
+		} catch (e) {
+			console.log(e);
+		}
+	};
 	return (
 		<ScrollView style={{ backgroundColor: '#dee2e6' }}>
-			{loading ? <Loader /> : data && data.me && <UserProfile {...data.me} />}
+			{loading ? <Loader /> : data && data.me && <UserProfile navigation={navigation} {...data.me} />}
 		</ScrollView>
 	);
 };

@@ -1,16 +1,14 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Alert } from 'react-native';
+import { TouchableOpacity, View, Text, Alert, AsyncStorage } from 'react-native';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
-import { ListItem, Avatar } from 'react-native-elements';
-import styled from 'styled-components';
-import { Ionicons } from '@expo/vector-icons';
-import styles from '../styles';
-import constants from '../constants';
+import { ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { useLogOut } from '../AuthContext';
+import Study from '../screens/Tabs/Study';
+import { StackActions, NavigationActions } from 'react-navigation';
 
-const UserProfile = ({ id, avatar, username, email }) => {
+const UserProfile = ({ navigation, id, avatar, username, email, myStudy }) => {
 	const DELETE_USER = gql`
 		mutation deleteUser {
 			deleteUser
@@ -29,7 +27,21 @@ const UserProfile = ({ id, avatar, username, email }) => {
 					onPress: () => console.log('로그아웃 취소'),
 					style: 'cancel'
 				},
-				{ text: '확인', onPress: () => logOut() }
+				{
+					text: '확인',
+					onPress: async () => {
+						try {
+							const resetAction = StackActions.reset({
+								index: 0,
+								actions: [ NavigationActions.navigate({ routeName: 'TabNavigation' }) ]
+							});
+							navigation.dispatch(resetAction);
+							await logOut();
+						} catch (e) {
+							await logOut();
+						}
+					}
+				}
 			],
 			{ cancelable: false }
 		);
@@ -68,7 +80,7 @@ const UserProfile = ({ id, avatar, username, email }) => {
 			<TouchableOpacity>
 				<ListItem title={'내정보 변경하기'} bottomDivider chevron />
 			</TouchableOpacity>
-			<TouchableOpacity>
+			<TouchableOpacity onPress={() => navigation.navigate('MyStudy', myStudy)}>
 				<ListItem title={'나의 스터디'} bottomDivider chevron />
 			</TouchableOpacity>
 			<TouchableOpacity>

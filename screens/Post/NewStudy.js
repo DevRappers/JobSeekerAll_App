@@ -77,7 +77,9 @@ export default ({ navigation }) => {
 				cancelButtonIndex: 7
 			},
 			(buttonIndex) => {
-				jobInput.onChange(BUTTONS[buttonIndex]);
+				if (buttonIndex !== 7) {
+					jobInput.onChange(BUTTONS[buttonIndex]);
+				}
 			}
 		);
 	};

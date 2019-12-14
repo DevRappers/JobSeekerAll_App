@@ -8,7 +8,7 @@ import useInput from '../../hooks/useInput';
 import styles from '../../styles';
 import constants from '../../constants';
 import { useMutation } from 'react-apollo-hooks';
-import { FEED_QUERY } from '../Tabs/Home';
+import { SEARCH_STUDY_QUERY } from '../Tabs/TabsQueries';
 
 const Container = styled.View`
 	padding: 20px;
@@ -63,7 +63,9 @@ export default ({ navigation }) => {
 	const areaInput = useInput('');
 	const timeInput = useInput('');
 
-	const [ uploadMutation ] = useMutation(UPLOAD);
+	const [ uploadMutation ] = useMutation(UPLOAD, {
+		refetchQueries: () => [ { query: SEARCH_STUDY_QUERY, variables: { term: '' } } ]
+	});
 	const handleSubmit = async () => {
 		if (
 			titleInput.value === '' ||

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Alert } from 'react-native';
-import { TextareaItem } from '@ant-design/react-native';
+import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
@@ -9,6 +9,7 @@ import styles from '../../styles';
 import constants from '../../constants';
 import { useMutation } from 'react-apollo-hooks';
 import { SEARCH_STUDY_QUERY } from '../Tabs/TabsQueries';
+import { JOB_LIST } from '../../DataList';
 
 const Container = styled.View`
 	padding: 20px;
@@ -66,6 +67,20 @@ export default ({ navigation }) => {
 	const [ uploadMutation ] = useMutation(UPLOAD, {
 		refetchQueries: () => [ { query: SEARCH_STUDY_QUERY, variables: { term: '' } } ]
 	});
+
+	const showActionSheet = () => {
+		const BUTTONS = [ 'IT', '경영,사무', '공모전', '자격증', '외국어', '교육', '기타', '취소' ];
+		ActionSheet.showActionSheetWithOptions(
+			{
+				title: '내글관리',
+				options: JOB_LIST,
+				cancelButtonIndex: 7
+			},
+			(buttonIndex) => {
+				jobInput.onChange(BUTTONS[buttonIndex]);
+			}
+		);
+	};
 	const handleSubmit = async () => {
 		if (
 			titleInput.value === '' ||
@@ -112,7 +127,8 @@ export default ({ navigation }) => {
 						placeholderTextColor={styles.darkGreyColor}
 					/>
 					<STextInput
-						onChangeText={jobInput.onChange}
+						onFocus={showActionSheet}
+						onChangeText={showActionSheet}
 						value={jobInput.value}
 						placeholder="분야"
 						multiline={true}

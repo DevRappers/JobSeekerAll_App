@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.TouchableOpacity`
-	background-color: ${(props) => (props.studyEnd === '2' ? props.theme.darkGreyColor : props.theme.whiteColor)};
+	background-color: ${(props) => (props.studyEnd === 2 ? props.theme.darkGreyColor : props.theme.whiteColor)};
 	border-radius: 50px;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border: 7px solid #c3fae8;
-	border-color: ${(props) => (props.studyEnd === '2' ? props.theme.blackColor : '#c3fae8')};
+	border-color: ${(props) => (props.studyEnd === 2 ? props.theme.blackColor : '#c3fae8')};
 `;
 
 const Header = styled.View`
@@ -28,19 +28,19 @@ const HeaderUserContainer = styled.View`margin-left: 10px;`;
 
 const TBold = styled.Text`
 	font-weight: 700;
-	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 	margin-bottom: 5px;
 `;
 
 const Bold = styled.Text`
 	font-weight: 500;
-	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 	margin-bottom: 5px;
 `;
 
 const End = styled.Text`
 	font-weight: 500;
-	color: ${(props) => (props.studyEnd === '2' ? props.theme.redColor : props.theme.blueColor)};
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.redColor : props.theme.blueColor)};
 `;
 
 const StudyDetailPost = ({ id, navigation, user, title, job, area, caption, information, time, studyEnd }) => {
@@ -70,7 +70,7 @@ const StudyDetailPost = ({ id, navigation, user, title, job, area, caption, info
 				<Bold>
 					진행일정 : <Bold style={{ color: 'purple' }}>{time}</Bold>
 				</Bold>
-				<End studyEnd={studyEnd}>현재 {studyEnd === '2' ? '모집마감' : '모집중'}</End>
+				<End studyEnd={studyEnd}>현재 {studyEnd === 2 ? '모집마감' : '모집중'}</End>
 			</View>
 		</Card>
 	);
@@ -89,7 +89,7 @@ StudyDetailPost.propTypes = {
 	job: PropTypes.string.isRequired,
 	area: PropTypes.string.isRequired,
 	time: PropTypes.string.isRequired,
-	studyEnd: PropTypes.string.isRequired,
+	studyEnd: PropTypes.number.isRequired,
 	createdAt: PropTypes.string.isRequired
 };
 

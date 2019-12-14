@@ -18,7 +18,20 @@ export default withNavigation(({ navigation }) => {
 		}
 	`;
 
+	const END_STUDY = gql`
+		mutation endStudy($id: String!) {
+			endStudy(id: $id)
+		}
+	`;
+
 	const [ deleteStudyMutation ] = useMutation(DELETE_STUDY, {
+		variables: {
+			id: navigation.getParam('id')
+		},
+		refetchQueries: () => [ { query: SEARCH_STUDY_QUERY, variables: { term: '' } } ]
+	});
+
+	const [ endStudyMutation ] = useMutation(END_STUDY, {
 		variables: {
 			id: navigation.getParam('id')
 		},
@@ -41,7 +54,26 @@ export default withNavigation(({ navigation }) => {
 			Alert.alert('업로드를 실패하였습니다.', '다시 시도해주세요.');
 		}
 	};
-
+	const endStudyPost = async () => {
+		if (navigation.getParam('studyEnd') === 2) {
+			Alert.alert('이미 모집 마감된 스터디입니다.');
+			return;
+		}
+		try {
+			const { data: { endStudy } } = await endStudyMutation({
+				variables: {
+					id: navigation.getParam('id')
+				}
+			});
+			if (endStudy) {
+				Alert.alert('스터디 모집 마감 완료!');
+				navigation.goBack(null);
+			}
+		} catch (e) {
+			console.log(e);
+			Alert.alert('업로드를 실패하였습니다.', '다시 시도해주세요.');
+		}
+	};
 	const showActionSheet = () => {
 		const BUTTONS = [ '글수정', '스터디마감', '글삭제', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
@@ -58,7 +90,7 @@ export default withNavigation(({ navigation }) => {
 						navigation.navigate('Home');
 						break;
 					case 1:
-						console.log('스터디마감');
+						endStudyPost();
 						break;
 					case 2:
 						deleteStudyPost();

@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.TouchableOpacity`
-	background-color: ${(props) => (props.studyEnd === '2' ? props.theme.darkGreyColor : props.theme.whiteColor)};
+	background-color: ${(props) => (props.studyEnd === 2 ? props.theme.darkGreyColor : props.theme.whiteColor)};
 	border-radius: 50px;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border: 7px solid #c3fae8;
-	border-color: ${(props) => (props.studyEnd === '2' ? props.theme.blackColor : '#c3fae8')};
+	border-color: ${(props) => (props.studyEnd === 2 ? props.theme.blackColor : '#c3fae8')};
 `;
 
 const Header = styled.View`
@@ -27,17 +27,20 @@ const HeaderUserContainer = styled.View`margin-left: 10px;`;
 
 const Bold = styled.Text`
 	font-weight: 500;
-	color: ${(props) => (props.studyEnd === '2' ? props.theme.lightGreyColor : props.theme.blackColor)};
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 `;
 
 const End = styled.Text`
 	font-weight: 500;
-	color: ${(props) => (props.studyEnd === '2' ? props.theme.redColor : props.theme.blueColor)};
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.redColor : props.theme.blueColor)};
 `;
 
 const StudyPost = ({ id, navigation, user, title, job, area, studyEnd, isMyStudy }) => {
 	return (
-		<Container studyEnd={studyEnd} onPress={() => navigation.navigate('StudyDetail', { id, title, isMyStudy })}>
+		<Container
+			studyEnd={studyEnd}
+			onPress={() => navigation.navigate('StudyDetail', { id, title, isMyStudy, studyEnd })}
+		>
 			<Header>
 				<Touchable>
 					<Image style={{ height: 30, width: 30, borderRadius: 15 }} source={{ uri: user.avatar }} />
@@ -52,7 +55,7 @@ const StudyPost = ({ id, navigation, user, title, job, area, studyEnd, isMyStudy
 				<Bold studyEnd={studyEnd}>스터디명 : {title}</Bold>
 				<Bold studyEnd={studyEnd}>분야 : {job}</Bold>
 				<Bold studyEnd={studyEnd}>지역 : {area}</Bold>
-				<End studyEnd={studyEnd}>{studyEnd === '2' ? '모집마감' : '모집중'}</End>
+				<End studyEnd={studyEnd}>{studyEnd === 2 ? '모집마감' : '모집중'}</End>
 			</Body>
 		</Container>
 	);
@@ -72,7 +75,7 @@ StudyPost.propTypes = {
 	area: PropTypes.string.isRequired,
 	time: PropTypes.string.isRequired,
 	isMyStudy: PropTypes.bool.isRequired,
-	studyEnd: PropTypes.string.isRequired,
+	studyEnd: PropTypes.number.isRequired,
 	createdAt: PropTypes.string.isRequired
 };
 

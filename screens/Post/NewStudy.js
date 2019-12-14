@@ -148,7 +148,7 @@ export default ({ navigation }) => {
 						style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
 					/>
 					<Button onPress={handleSubmit}>
-						{loading ? <ActivityIndicator color="white" /> : <Text>만들기 </Text>}
+						{loading ? <ActivityIndicator color="white" /> : <Text>생성</Text>}
 					</Button>
 				</Form>
 			</Container>

@@ -28,6 +28,7 @@ export default ({ navigation }) => {
 			console.log(e);
 		}
 	};
+
 	return (
 		<ScrollView style={{ backgroundColor: '#dee2e6' }}>
 			{loading ? <Loader /> : data && data.me && <UserProfile navigation={navigation} {...data.me} />}

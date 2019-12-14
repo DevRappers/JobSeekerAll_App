@@ -80,7 +80,7 @@ const UserProfile = ({ navigation, id, avatar, username, email, myStudy }) => {
 			<TouchableOpacity>
 				<ListItem title={'내정보 변경하기'} bottomDivider chevron />
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => navigation.navigate('MyStudy', myStudy)}>
+			<TouchableOpacity onPress={() => navigation.navigate('MyStudy', { myStudy })}>
 				<ListItem title={'나의 스터디'} bottomDivider chevron />
 			</TouchableOpacity>
 			<TouchableOpacity>

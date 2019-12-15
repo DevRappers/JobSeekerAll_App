@@ -86,8 +86,19 @@ export default withNavigation(({ navigation }) => {
 			(buttonIndex) => {
 				switch (buttonIndex) {
 					case 0:
-						console.log('글수정');
-						navigation.navigate('Home');
+						if (navigation.getParam('studyEnd') === 2) {
+							Alert.alert('마감된 스터디는 수정 불가합니다.');
+							break;
+						}
+						navigation.navigate('StudyEdit', {
+							id: navigation.getParam('id'),
+							title: navigation.getParam('title'),
+							caption: navigation.getParam('caption'),
+							area: navigation.getParam('area'),
+							job: navigation.getParam('job'),
+							information: navigation.getParam('information'),
+							time: navigation.getParam('time')
+						});
 						break;
 					case 1:
 						endStudyPost();

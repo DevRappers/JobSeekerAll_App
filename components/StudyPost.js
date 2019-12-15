@@ -35,11 +35,22 @@ const End = styled.Text`
 	color: ${(props) => (props.studyEnd === 2 ? props.theme.redColor : props.theme.blueColor)};
 `;
 
-const StudyPost = ({ id, navigation, user, title, job, area, studyEnd, isMyStudy }) => {
+const StudyPost = ({ id, navigation, user, title, caption, job, information, area, time, studyEnd, isMyStudy }) => {
 	return (
 		<Container
 			studyEnd={studyEnd}
-			onPress={() => navigation.navigate('StudyDetail', { id, title, isMyStudy, studyEnd })}
+			onPress={() =>
+				navigation.navigate('StudyDetail', {
+					id,
+					title,
+					caption,
+					job,
+					information,
+					area,
+					time,
+					isMyStudy,
+					studyEnd
+				})}
 		>
 			<Header>
 				<Touchable>

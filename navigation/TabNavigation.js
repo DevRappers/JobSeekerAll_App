@@ -9,7 +9,6 @@
 */
 import React from 'react';
 import { View, Platform } from 'react-native';
-import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../screens/Tabs/Home';
@@ -22,6 +21,7 @@ import NavIcon from '../components/NavIcon';
 import styles from '../styles';
 import StudyLink from '../components/StudyLink';
 import MyStudy from '../screens/My/MyStudy';
+import StudyEdit from '../screens/Edit/StudyEdit';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -33,19 +33,26 @@ const stackFactory = (initialRoute, customConfig) =>
 				...customConfig
 			}
 		},
+		MyStudy: {
+			screen: MyStudy,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '나의 스터디'
+			})
+		},
+		StudyEdit: {
+			screen: StudyEdit,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '스터디수정'
+			})
+		},
 		StudyDetail: {
 			screen: StudyDetail,
 			navigationOptions: ({ navigation }) => ({
 				headerTintColor: styles.blackColor,
 				title: navigation.getParam('title'),
 				headerRight: navigation.getParam('isMyStudy') ? <StudyLink /> : null
-			})
-		},
-		MyStudy: {
-			screen: MyStudy,
-			navigationOptions: ({ navigation }) => ({
-				headerTintColor: styles.blackColor,
-				title: '나의 스터디'
 			})
 		}
 	});

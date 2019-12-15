@@ -39,30 +39,39 @@ const Text = styled.Text`
 	font-weight: 600;
 `;
 
-const UPLOAD = gql`
-	mutation createStudy(
-		$title: String!
-		$caption: String!
-		$information: String!
-		$job: String!
-		$area: String!
-		$time: String!
+const EDIT = gql`
+	mutation editStudy(
+		$id: String!
+		$title: String
+		$caption: String
+		$information: String
+		$job: String
+		$area: String
+		$time: String
 	) {
-		createStudy(title: $title, caption: $caption, information: $information, job: $job, area: $area, time: $time)
+		editStudy(
+			id: $id
+			title: $title
+			caption: $caption
+			information: $information
+			job: $job
+			area: $area
+			time: $time
+		)
 	}
 `;
 
 export default ({ navigation }) => {
 	const [ loading, setIsLoading ] = useState(false);
 
-	const titleInput = useInput('');
-	const captionInput = useInput('');
-	const informationInput = useInput('');
-	const jobInput = useInput('');
-	const areaInput = useInput('');
-	const timeInput = useInput('');
+	const titleInput = useInput(navigation.getParam('title', ''));
+	const captionInput = useInput(navigation.getParam('caption', ''));
+	const informationInput = useInput(navigation.getParam('information', ''));
+	const jobInput = useInput(navigation.getParam('job', ''));
+	const areaInput = useInput(navigation.getParam('area', ''));
+	const timeInput = useInput(navigation.getParam('time', ''));
 
-	const [ uploadMutation ] = useMutation(UPLOAD, {
+	const [ uploadMutation ] = useMutation(EDIT, {
 		refetchQueries: () => [ { query: SEARCH_STUDY_QUERY, variables: { term: '' } } ]
 	});
 
@@ -79,8 +88,9 @@ export default ({ navigation }) => {
 		}
 		try {
 			setIsLoading(true);
-			const { data: { createStudy } } = await uploadMutation({
+			const { data: { editStudy } } = await uploadMutation({
 				variables: {
+					id: navigation.getParam('id'),
 					title: titleInput.value,
 					caption: captionInput.value,
 					information: informationInput.value,
@@ -89,13 +99,13 @@ export default ({ navigation }) => {
 					time: timeInput.value
 				}
 			});
-			if (createStudy) {
-				Alert.alert('업로드 성공!!!');
-				navigation.navigate('TabNavigation');
+			if (editStudy) {
+				Alert.alert('스터디 수정 성공!!!');
+				navigation.goBack(null);
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('스터디명이 중복될 수 없습니다. 다른것으로 설정해주세요.');
+			Alert.alert('수정을 실패하였습니다.', '다시 시도해주세요.');
 		} finally {
 			setIsLoading(false);
 		}
@@ -103,7 +113,7 @@ export default ({ navigation }) => {
 	return (
 		<StudyForm
 			loading={loading}
-			title="신규스터디 생성"
+			title="스터디 수정"
 			titleInput={titleInput}
 			jobInput={jobInput}
 			informationInput={informationInput}
@@ -111,7 +121,7 @@ export default ({ navigation }) => {
 			areaInput={areaInput}
 			timeInput={timeInput}
 			handleSubmit={handleSubmit}
-			btnName="생성"
+			btnName="수정"
 		/>
 	);
 };

@@ -30,6 +30,7 @@ export default function App() {
 
 			// 앱에 필요한 이미지를 불러옴
 			await Asset.loadAsync([ require('./assets/logo.png') ]);
+			
 			const cache = new InMemoryCache();
 			await persistCache({
 				cache,

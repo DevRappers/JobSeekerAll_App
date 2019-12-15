@@ -5,6 +5,7 @@ import { USER_FRAGMENT } from '../../fragments';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import UserProfile from '../../components/UserProfile';
+import { Modal, Provider } from '@ant-design/react-native';
 
 export const ME = gql`
   {
@@ -30,8 +31,10 @@ export default ({ navigation }) => {
 	};
 
 	return (
-		<ScrollView style={{ backgroundColor: '#dee2e6' }}>
-			{loading ? <Loader /> : data && data.me && <UserProfile navigation={navigation} {...data.me} />}
-		</ScrollView>
+		<Provider>
+			<ScrollView style={{ backgroundColor: '#dee2e6' }}>
+				{loading ? <Loader /> : data && data.me && <UserProfile navigation={navigation} {...data.me} />}
+			</ScrollView>
+		</Provider>
 	);
 };

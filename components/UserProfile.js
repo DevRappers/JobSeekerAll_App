@@ -1,20 +1,31 @@
-import React from 'react';
-import { TouchableOpacity, View, Text, Alert, AsyncStorage } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, View, Text, Alert } from 'react-native';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
 import { ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { useLogOut } from '../AuthContext';
-import Study from '../screens/Tabs/Study';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { Modal } from '@ant-design/react-native';
+import { ME } from '../screens/Tabs/Profile';
 
 const UserProfile = ({ navigation, id, avatar, username, email, myStudy }) => {
+	const [ cname, setCname ] = useState('');
 	const DELETE_USER = gql`
 		mutation deleteUser {
 			deleteUser
 		}
 	`;
+
+	const CHANGE_USERNAME = gql`
+		mutation changeUsername($username: String) {
+			changeUsername(username: $username)
+		}
+	`;
+
 	const [ deleteUserMutation ] = useMutation(DELETE_USER);
+
+	const [ changeUserMutation ] = useMutation(CHANGE_USERNAME);
 
 	const logOut = useLogOut();
 	const logOutButton = () => {
@@ -67,6 +78,41 @@ const UserProfile = ({ navigation, id, avatar, username, email, myStudy }) => {
 			{ cancelable: false }
 		);
 	};
+
+	const updateName = () => {
+		Modal.prompt(
+			'닉네임변경',
+			'변경할 이름을 입력해주세요',
+			[
+				{
+					text: '취소',
+					onPress: () => {
+						setCname('text');
+					}
+				},
+				{
+					text: '변경',
+					onPress: async (text) => {
+						setCname(text);
+						try {
+							await changeUserMutation({
+								variables: {
+									username: text
+								},
+								refetchQueries: () => [ { query: ME } ]
+							});
+							Alert.alert('닉네임변경성공');
+						} catch (e) {
+							Alert.alert('중복되는 닉네임이 있습니다. 다른것으로 설정해주세요.');
+						}
+					}
+				}
+			],
+			'default',
+			null,
+			[ '닉네임' ]
+		);
+	};
 	return (
 		<View>
 			<ListItem
@@ -77,8 +123,8 @@ const UserProfile = ({ navigation, id, avatar, username, email, myStudy }) => {
 				bottomDivider
 			/>
 			<Text style={{ paddingLeft: 10, paddingBottom: 5 }}>계정정보</Text>
-			<TouchableOpacity>
-				<ListItem title={'내정보 변경하기'} bottomDivider chevron />
+			<TouchableOpacity onPress={updateName}>
+				<ListItem title={'닉네임 변경하기'} bottomDivider chevron />
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => navigation.navigate('MyStudy', { myStudy })}>
 				<ListItem title={'나의 스터디'} bottomDivider chevron />

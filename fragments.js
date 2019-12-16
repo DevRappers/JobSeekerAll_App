@@ -56,6 +56,7 @@ export const HOBBY_FRAGMENT = gql`
 			commentCount
 			createdAt
 		}
+		isMyHobby
 		postsCount
 		information
 		createdAt

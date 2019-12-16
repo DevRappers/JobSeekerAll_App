@@ -46,7 +46,7 @@ export default ({ navigation }) => {
 			</ProfileHeader>
 			<SegmentedControl
 				tintColor={'blue'}
-				values={[ '모임소개', `모집공고(${postsCount})`, `방명록(${commentCount})` ]}
+				values={[ '모임소개', `모집공고`, `방명록` ]}
 				onChange={onChange}
 				onValueChange={onValueChange}
 			/>

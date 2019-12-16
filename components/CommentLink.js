@@ -8,10 +8,11 @@ import NavIcon from './NavIcon';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
 import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
+import { HOBBY_DETAIL } from './HobbyTest';
 
 const Container = styled.TouchableOpacity`align-items: flex-end;`;
 
-export default withNavigation(({ navigation, id }) => {
+export default withNavigation(({ navigation, id, postId }) => {
 	const DELETE_COMMENT = gql`
 		mutation deleteComment($id: String!) {
 			deleteComment(id: $id)
@@ -21,7 +22,10 @@ export default withNavigation(({ navigation, id }) => {
 		variables: {
 			id
 		},
-		refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+		refetchQueries: () => [
+			{ query: HOBBY_DETAIL, variables: { id: postId } },
+			{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+		]
 	});
 
 	const deleteComment = async () => {
@@ -30,11 +34,13 @@ export default withNavigation(({ navigation, id }) => {
 				variables: {
 					id
 				},
-				refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+				refetchQueries: () => [
+					{ query: HOBBY_DETAIL, variables: { id: postId } },
+					{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+				]
 			});
 			if (deleteComment) {
 				Alert.alert('댓글 삭제 성공!!!');
-				navigation.goBack(null);
 			}
 		} catch (e) {
 			console.log(e);

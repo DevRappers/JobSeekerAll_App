@@ -16,7 +16,6 @@ const Container = styled.View``;
 
 export default ({ navigation }) => {
 	const data = navigation.getParam('myStudy');
-	console.log(data);
 	return (
 		<ScrollView>
 			{data && data.map((study) => <StudyPost navigation={navigation} key={study.id} {...study} />)}

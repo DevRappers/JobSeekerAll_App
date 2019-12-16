@@ -3,14 +3,28 @@ import { ScrollView, Text, View, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Grid } from '@ant-design/react-native';
 
-export default ({ data }) => {
+export default ({ data, navigation }) => {
 	return (
 		<View style={[ { padding: 10 } ]}>
 			<Grid
 				data={data}
 				columnNum={2}
-				carouselMaxRow={10}
-				onPress={(_el, index) => alert(index)}
+				carouselMaxRow={data.length}
+				onPress={(_el, index) => {
+					const { isMyHobby, title, proImage, caption, information, postsCount, commentCount, posts } = data[
+						index
+					];
+					navigation.navigate('HobbyDetail', {
+						isMyHobby,
+						title,
+						proImage,
+						caption,
+						information,
+						postsCount,
+						commentCount,
+						posts
+					});
+				}}
 				renderItem={(_el, index) => (
 					<Card title={data[index].title}>
 						<View>

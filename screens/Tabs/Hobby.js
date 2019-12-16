@@ -45,6 +45,7 @@ export default ({ navigation }) => {
 	const refresh = async () => {
 		try {
 			setRefreshing(true);
+			console.log(data);
 			await refetch({ variables: { term } });
 		} catch (e) {
 			console.log(e);
@@ -81,7 +82,7 @@ export default ({ navigation }) => {
 					selectedButtonStyle={{ backgroundColor: '#2BC0BC' }}
 				/>
 			</ScrollView>
-			{loading ? <Loader /> : <HobbyPost data={data.searchHobby} />}
+			{loading ? <Loader /> : <HobbyPost navigation={navigation} data={data.searchHobby} />}
 		</ScrollView>
 	);
 };

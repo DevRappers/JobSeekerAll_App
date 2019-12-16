@@ -34,7 +34,7 @@ export const HOBBY_FRAGMENT = gql`
 		}
 		posts {
 			id
-			location
+			title
 			caption
 			files {
 				id
@@ -43,19 +43,19 @@ export const HOBBY_FRAGMENT = gql`
 			likes {
 				id
 			}
-			comments {
-				id
-				text
-				user {
-					id
-					username
-				}
-			}
 			likeCount
 			isLiked
-			commentCount
 			createdAt
 		}
+		comments {
+			id
+			text
+			user {
+				id
+				username
+			}
+		}
+		commentCount
 		isMyHobby
 		postsCount
 		information

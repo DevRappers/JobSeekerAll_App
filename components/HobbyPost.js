@@ -12,6 +12,7 @@ export default ({ data, navigation }) => {
 				carouselMaxRow={data.length}
 				onPress={(_el, index) => {
 					const {
+						id,
 						isMyHobby,
 						title,
 						proImage,
@@ -23,6 +24,7 @@ export default ({ data, navigation }) => {
 						comments
 					} = data[index];
 					navigation.navigate('HobbyDetail', {
+						id,
 						isMyHobby,
 						title,
 						proImage,

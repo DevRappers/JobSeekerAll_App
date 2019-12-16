@@ -51,7 +51,7 @@ export default withNavigation(({ navigation }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('업로드를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
 		}
 	};
 	const endStudyPost = async () => {
@@ -71,7 +71,7 @@ export default withNavigation(({ navigation }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('업로드를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('모집마감을 실패하였습니다.', '다시 시도해주세요.');
 		}
 	};
 	const showActionSheet = () => {

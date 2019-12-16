@@ -45,7 +45,6 @@ export default ({ navigation }) => {
 	const refresh = async () => {
 		try {
 			setRefreshing(true);
-			console.log(data);
 			await refetch({ variables: { term } });
 		} catch (e) {
 			console.log(e);

@@ -1,19 +1,18 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Card, WingBlank } from '@ant-design/react-native';
-import styled from 'styled-components';
 import { ListItem } from 'react-native-elements';
 import CommentLink from './CommentLink';
+import styled from 'styled-components';
 
 const Bold = styled.Text`
-	font-weight: 600;
+	font-weight: 500;
+	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 	font-size: 16px;
-	color: ${(props) => props.theme.blackColor};
-	margin-bottom: 10px;
 `;
 
-export default ({ data, information, caption, posts, comments }) => {
-	switch (data) {
+export default ({ id, switchs, information, caption, posts, comments }) => {
+	switch (switchs) {
 		case 0:
 			return (
 				<View style={{ flex: 1, marginTop: 10, marginLeft: 10 }}>
@@ -33,7 +32,7 @@ export default ({ data, information, caption, posts, comments }) => {
 							day: 'numeric'
 						});
 						return (
-							<TouchableOpacity>
+							<TouchableOpacity key={i}>
 								<ListItem key={i} title={l.title} subtitle={dateString} bottomDivider chevron />
 							</TouchableOpacity>
 						);
@@ -42,7 +41,7 @@ export default ({ data, information, caption, posts, comments }) => {
 			);
 		case 2:
 			return (
-				<View>
+				<View style={{ paddingTop: 10 }}>
 					{comments.map((l, i) => {
 						const date = new Date(l.createdAt);
 						const dateString = date.toLocaleDateString('ko-KR', {
@@ -51,13 +50,13 @@ export default ({ data, information, caption, posts, comments }) => {
 							day: 'numeric'
 						});
 						return (
-							<WingBlank size="lg" style={{ marginTop: 10 }}>
+							<WingBlank size="lg" style={{ marginTop: 10 }} key={i}>
 								<Card>
 									<Card.Header
 										title={l.user.username}
 										thumbStyle={{ width: 30, height: 30, borderRadius: 15 }}
 										thumb={l.user.avatar}
-										extra={l.isMyComment && <CommentLink />}
+										extra={l.isMyComment && <CommentLink id={l.id} />}
 									/>
 									<Card.Body>
 										<View style={{ height: 42 }}>

@@ -19,6 +19,7 @@ const Bold = styled.Text`
 
 export default ({ navigation }) => {
 	const isMyHobby = navigation.getParam('isMyHobby');
+	const id = navigation.getParam('id');
 	const title = navigation.getParam('title');
 	const proImage = navigation.getParam('proImage');
 	const caption = navigation.getParam('caption');
@@ -49,7 +50,14 @@ export default ({ navigation }) => {
 				onChange={onChange}
 				onValueChange={onValueChange}
 			/>
-			<HobbyTest data={value} information={information} caption={caption} posts={posts} comments={comments} />
+			<HobbyTest
+				id={id}
+				switchs={value}
+				information={information}
+				caption={caption}
+				posts={posts}
+				comments={comments}
+			/>
 		</ScrollView>
 	);
 };

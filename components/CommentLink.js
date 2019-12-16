@@ -5,21 +5,60 @@ import styled from 'styled-components';
 import { withNavigation } from 'react-navigation';
 import styles from '../styles';
 import NavIcon from './NavIcon';
+import { gql } from 'apollo-boost';
+import { useMutation } from 'react-apollo-hooks';
+import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
 
 const Container = styled.TouchableOpacity`align-items: flex-end;`;
 
-export default withNavigation(({ navigation }) => {
+export default withNavigation(({ navigation, id }) => {
+	const DELETE_COMMENT = gql`
+		mutation deleteComment($id: String!) {
+			deleteComment(id: $id)
+		}
+	`;
+	const [ deleteCommentMutation ] = useMutation(DELETE_COMMENT, {
+		variables: {
+			id
+		},
+		refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+	});
+
+	const deleteComment = async () => {
+		try {
+			const { data: { deleteComment } } = await deleteCommentMutation({
+				variables: {
+					id
+				},
+				refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+			});
+			if (deleteComment) {
+				Alert.alert('댓글 삭제 성공!!!');
+				navigation.goBack(null);
+			}
+		} catch (e) {
+			console.log(e);
+			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+		}
+	};
+
 	const showActionSheet = () => {
 		const BUTTONS = [ '댓글삭제', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '내 모임 관리',
+				title: '내 댓글 관리',
 				options: BUTTONS,
 				cancelButtonIndex: 1,
 				destructiveButtonIndex: 0
 			},
 			(buttonIndex) => {
-				null;
+				switch (buttonIndex) {
+					case 0:
+						deleteComment();
+						break;
+					case 1:
+						break;
+				}
 			}
 		);
 	};

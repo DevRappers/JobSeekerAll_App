@@ -11,9 +11,17 @@ export default ({ data, navigation }) => {
 				columnNum={2}
 				carouselMaxRow={data.length}
 				onPress={(_el, index) => {
-					const { isMyHobby, title, proImage, caption, information, postsCount, commentCount, posts } = data[
-						index
-					];
+					const {
+						isMyHobby,
+						title,
+						proImage,
+						caption,
+						information,
+						postsCount,
+						commentCount,
+						posts,
+						comments
+					} = data[index];
 					navigation.navigate('HobbyDetail', {
 						isMyHobby,
 						title,
@@ -22,7 +30,8 @@ export default ({ data, navigation }) => {
 						information,
 						postsCount,
 						commentCount,
-						posts
+						posts,
+						comments
 					});
 				}}
 				renderItem={(_el, index) => (

@@ -53,7 +53,10 @@ export const HOBBY_FRAGMENT = gql`
 			user {
 				id
 				username
+				avatar
 			}
+			createdAt
+			isMyComment
 		}
 		commentCount
 		isMyHobby

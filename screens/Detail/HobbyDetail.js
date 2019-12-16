@@ -26,6 +26,7 @@ export default ({ navigation }) => {
 	const postsCount = navigation.getParam('postsCount');
 	const commentCount = navigation.getParam('commentCount');
 	const posts = navigation.getParam('posts');
+	const comments = navigation.getParam('comments');
 
 	const [ value, setValue ] = useState(0);
 
@@ -44,11 +45,11 @@ export default ({ navigation }) => {
 			</ProfileHeader>
 			<SegmentedControl
 				tintColor={'blue'}
-				values={[ '모임소개', `모집공고(${postsCount})`, `댓글(${commentCount})` ]}
+				values={[ '모임소개', `모집공고(${postsCount})`, `방명록(${commentCount})` ]}
 				onChange={onChange}
 				onValueChange={onValueChange}
 			/>
-			<HobbyTest data={value} information={information} caption={caption} posts={posts} />
+			<HobbyTest data={value} information={information} caption={caption} posts={posts} comments={comments} />
 		</ScrollView>
 	);
 };

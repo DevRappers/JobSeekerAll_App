@@ -1,5 +1,5 @@
 import { gql } from 'apollo-boost';
-import { STUDY_FRAGMENT } from '../../fragments';
+import { STUDY_FRAGMENT, HOBBY_FRAGMENT } from '../../fragments';
 
 export const STUDY_QUERY = gql`
 	{
@@ -17,4 +17,25 @@ export const SEARCH_STUDY_QUERY = gql`
 		}
 	}
 	${STUDY_FRAGMENT}
+`;
+
+export const SEARCH_HOBBY_QUERY = gql`
+	query searchHobby($term: String!) {
+		searchHobby(term: $term) {
+			...HobbyParts
+		}
+	}
+	${HOBBY_FRAGMENT}
+`;
+
+export const DELETE_USER = gql`
+	mutation deleteUser {
+		deleteUser
+	}
+`;
+
+export const CHANGE_USERNAME = gql`
+	mutation changeUsername($username: String) {
+		changeUsername(username: $username)
+	}
 `;

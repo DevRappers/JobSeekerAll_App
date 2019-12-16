@@ -20,6 +20,48 @@ export const STUDY_FRAGMENT = gql`
 	}
 `;
 
+export const HOBBY_FRAGMENT = gql`
+	fragment HobbyParts on Hobby {
+		id
+		title
+		caption
+		area
+		proImage
+		user {
+			id
+			avatar
+			username
+		}
+		posts {
+			id
+			location
+			caption
+			files {
+				id
+				url
+			}
+			likes {
+				id
+			}
+			comments {
+				id
+				text
+				user {
+					id
+					username
+				}
+			}
+			likeCount
+			isLiked
+			commentCount
+			createdAt
+		}
+		postsCount
+		information
+		createdAt
+	}
+`;
+
 export const USER_FRAGMENT = gql`
     fragment UserParts on User{
         id

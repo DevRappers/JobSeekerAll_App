@@ -12,6 +12,7 @@ const Bold = styled.Text`
 	font-weight: 500;
 	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 	font-size: 16px;
+	margin-bottom: 10px;
 `;
 
 export const HOBBY_DETAIL = gql`

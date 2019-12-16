@@ -7,11 +7,42 @@ import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
 import styles from '../styles';
 import NavIcon from './NavIcon';
-import { SEARCH_STUDY_QUERY } from '../screens/Tabs/TabsQueries';
+import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
 
 const Container = styled.TouchableOpacity`padding-right: 20px;`;
 
 export default withNavigation(({ navigation }) => {
+	const DELETE_HOBBY = gql`
+		mutation deleteHobby($id: String!) {
+			deleteHobby(id: $id)
+		}
+	`;
+
+	const [ deleteHobbyMutation ] = useMutation(DELETE_HOBBY, {
+		variables: {
+			id: navigation.getParam('id')
+		},
+		refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+	});
+
+	const deleteStudyPost = async () => {
+		try {
+			const { data: { deleteHobby } } = await deleteHobbyMutation({
+				variables: {
+					id: navigation.getParam('id')
+				},
+				refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+			});
+			if (deleteHobby) {
+				Alert.alert('취미모임 삭제 성공!!!');
+				navigation.goBack(null);
+			}
+		} catch (e) {
+			console.log(e);
+			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+		}
+	};
+
 	const showActionSheet = () => {
 		const BUTTONS = [ '모임삭제', '모임수정', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
@@ -22,7 +53,15 @@ export default withNavigation(({ navigation }) => {
 				destructiveButtonIndex: 0
 			},
 			(buttonIndex) => {
-				null;
+				switch (buttonIndex) {
+					case 0:
+						deleteStudyPost();
+						break;
+					case 1:
+						break;
+					case 2:
+						break;
+				}
 			}
 		);
 	};

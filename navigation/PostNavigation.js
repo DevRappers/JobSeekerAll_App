@@ -65,7 +65,7 @@ export default createStackNavigator(
 		TakePhoto: {
 			screen: TakePhoto,
 			navigationOptions: {
-				header: null
+				title: '사진촬영'
 			}
 		}
 	},

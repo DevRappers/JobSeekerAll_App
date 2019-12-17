@@ -24,6 +24,8 @@ import MyStudy from '../screens/My/MyStudy';
 import StudyEdit from '../screens/Edit/StudyEdit';
 import HobbyDetail from '../screens/Detail/HobbyDetail';
 import HobbyLink from '../components/HobbyLink';
+import PostDetail from '../screens/Detail/PostDetail';
+import PostLink from '../components/PostLink';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -63,6 +65,16 @@ const stackFactory = (initialRoute, customConfig) =>
 				headerTintColor: styles.blackColor,
 				title: '취미모임',
 				headerRight: navigation.getParam('isMyHobby') ? <HobbyLink /> : null
+			})
+		},
+		PostDetail: {
+			screen: PostDetail,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '포스트',
+				headerRight: navigation.getParam('isMyPost') ? (
+					<PostLink id={navigation.getParam('id')} postId={navigation.getParam('hobbyId')} />
+				) : null
 			})
 		}
 	});

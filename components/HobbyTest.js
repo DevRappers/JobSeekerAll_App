@@ -50,6 +50,12 @@ export const HOBBY_DETAIL = gql`
 				id
 				createdAt
 				title
+				caption
+				isMyPost
+				files {
+					id
+					url
+				}
 			}
 		}
 	}
@@ -60,7 +66,7 @@ export const ADD_COMMENT = gql`
 	}
 `;
 
-export default ({ id, switchs, information, caption, posts }) => {
+export default ({ navigation, id, switchs, information, caption, posts }) => {
 	const [ visible, setVisible ] = useState(false);
 	const textInput = useInput('');
 	const { loading, data } = useQuery(HOBBY_DETAIL, {
@@ -102,7 +108,6 @@ export default ({ id, switchs, information, caption, posts }) => {
 			Alert.alert('댓글 등록 실패.', '다시 시도해주세요.');
 		}
 	};
-	console.log(data);
 	switch (switchs) {
 		case 0:
 			return (
@@ -125,8 +130,21 @@ export default ({ id, switchs, information, caption, posts }) => {
 								month: 'long',
 								day: 'numeric'
 							});
+							const { id: postId, createdAt, title, caption, files, isMyPost } = l;
 							return (
-								<TouchableOpacity key={i}>
+								<TouchableOpacity
+									key={i}
+									onPress={() =>
+										navigation.navigate('PostDetail', {
+											hobbyId: id,
+											id: postId,
+											title,
+											createdAt,
+											caption,
+											files,
+											isMyPost
+										})}
+								>
 									<ListItem key={i} title={l.title} subtitle={dateString} bottomDivider chevron />
 								</TouchableOpacity>
 							);

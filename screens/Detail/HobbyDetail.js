@@ -51,6 +51,7 @@ export default ({ navigation }) => {
 				onValueChange={onValueChange}
 			/>
 			<HobbyTest
+				navigation={navigation}
 				id={id}
 				switchs={value}
 				information={information}

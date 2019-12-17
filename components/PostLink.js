@@ -7,34 +7,40 @@ import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
 import styles from '../styles';
 import NavIcon from './NavIcon';
+import { HOBBY_DETAIL } from './HobbyTest';
 import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
 
 const Container = styled.TouchableOpacity`padding-right: 20px;`;
 
-export default withNavigation(({ navigation }) => {
-	const DELETE_HOBBY = gql`
-		mutation deleteHobby($id: String!) {
-			deleteHobby(id: $id)
+export default withNavigation(({ navigation, id, postId }) => {
+	const DELETE_POST = gql`
+		mutation deletePost($id: String!) {
+			deletePost(id: $id)
 		}
 	`;
-
-	const [ deleteHobbyMutation ] = useMutation(DELETE_HOBBY, {
+	const [ deletePostMutation ] = useMutation(DELETE_POST, {
 		variables: {
-			id: navigation.getParam('id')
+			id
 		},
-		refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+		refetchQueries: () => [
+			{ query: HOBBY_DETAIL, variables: { id: postId } },
+			{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+		]
 	});
 
-	const deleteStudyPost = async () => {
+	const deletePost = async () => {
 		try {
-			const { data: { deleteHobby } } = await deleteHobbyMutation({
+			const { data: { deletePost } } = await deletePostMutation({
 				variables: {
-					id: navigation.getParam('id')
+					id
 				},
-				refetchQueries: () => [ { query: SEARCH_HOBBY_QUERY, variables: { term: '' } } ]
+				refetchQueries: () => [
+					{ query: HOBBY_DETAIL, variables: { id: postId } },
+					{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+				]
 			});
-			if (deleteHobby) {
-				Alert.alert('취미모임 삭제 성공!!!');
+			if (deletePost) {
+				Alert.alert('포스트 삭제 성공!!!');
 				navigation.goBack(null);
 			}
 		} catch (e) {
@@ -44,24 +50,22 @@ export default withNavigation(({ navigation }) => {
 	};
 
 	const showActionSheet = () => {
-		const BUTTONS = [ '모임삭제', '모임수정', '공고업로드', '취소' ];
+		const BUTTONS = [ '포스트수정', '포스트삭제', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
 				title: '내 모임 관리',
 				options: BUTTONS,
-				cancelButtonIndex: 3,
-				destructiveButtonIndex: 0
+				cancelButtonIndex: 2,
+				destructiveButtonIndex: 1
 			},
 			(buttonIndex) => {
 				switch (buttonIndex) {
 					case 0:
-						deleteStudyPost();
 						break;
 					case 1:
+						deletePost();
 						break;
 					case 2:
-						break;
-					case 3:
 						break;
 				}
 			}

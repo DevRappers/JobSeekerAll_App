@@ -1,18 +1,34 @@
-import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { Card, WingBlank } from '@ant-design/react-native';
-import { ListItem } from 'react-native-elements';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import { Card, WingBlank, TextareaItem } from '@ant-design/react-native';
+import { ListItem, Button, Overlay } from 'react-native-elements';
 import Loader from './Loader';
 import styled from 'styled-components';
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery, useMutation } from 'react-apollo-hooks';
 import { gql } from 'apollo-boost';
 import CommentLink from './CommentLink';
+import useInput from '../hooks/useInput';
+import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
 
 const Bold = styled.Text`
 	font-weight: 500;
 	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
 	font-size: 16px;
 	margin-bottom: 10px;
+`;
+
+const ButtonGroups = styled.View`
+	margin-top: 10px;
+	flex-direction: row;
+`;
+
+const CustomButton = styled.TouchableOpacity`
+	position: absolute;
+	right: 40;
+	height: 40;
+	width: 40;
+	border-radius: 20;
+	background-color: #2bc0bc;
 `;
 
 export const HOBBY_DETAIL = gql`
@@ -38,11 +54,54 @@ export const HOBBY_DETAIL = gql`
 		}
 	}
 `;
+export const ADD_COMMENT = gql`
+	mutation addComment($text: String!, $hobbyId: String!) {
+		addComment(text: $text, hobbyId: $hobbyId)
+	}
+`;
 
 export default ({ id, switchs, information, caption, posts }) => {
+	const [ visible, setVisible ] = useState(false);
+	const textInput = useInput('');
 	const { loading, data } = useQuery(HOBBY_DETAIL, {
 		variables: { id }
 	});
+	const [ addCommentMutation ] = useMutation(ADD_COMMENT, {
+		variables: {
+			hobbyId: id,
+			text: textInput.value
+		},
+		refetchQueries: () => [
+			{ query: HOBBY_DETAIL, variables: { id } },
+			{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+		]
+	});
+	const addComment = async () => {
+		if (textInput.value === '') {
+			Alert.alert('댓글을 입력해주세요!');
+			return;
+		}
+		try {
+			const { data: { addComment } } = await addCommentMutation({
+				variables: {
+					hobbyId: id,
+					text: textInput.value
+				},
+				refetchQueries: () => [
+					{ query: HOBBY_DETAIL, variables: { id } },
+					{ query: SEARCH_HOBBY_QUERY, variables: { term: '' } }
+				]
+			});
+			if (addComment) {
+				Alert.alert('댓글 등록 성공');
+				setVisible(false);
+				textInput.onChange('');
+			}
+		} catch (e) {
+			console.log(e);
+			Alert.alert('댓글 등록 실패.', '다시 시도해주세요.');
+		}
+	};
 	console.log(data);
 	switch (switchs) {
 		case 0:
@@ -78,6 +137,39 @@ export default ({ id, switchs, information, caption, posts }) => {
 		case 2:
 			return (
 				<View style={{ paddingTop: 10 }}>
+					<Button
+						title="방명록 남기기"
+						type="outline"
+						onPress={() => setVisible(true)}
+						style={{ marginLeft: 10, marginRight: 10 }}
+					/>
+					<Overlay isVisible={visible} height={310} borderRadius={10}>
+						<TextareaItem
+							onChangeText={textInput.onChange}
+							value={textInput.value}
+							rows={10}
+							placeholder="방명록을 입력하세요."
+							count={50}
+							style={{ fontSize: 14 }}
+						/>
+						<ButtonGroups>
+							<Button
+								title="확인"
+								type="outline"
+								style={{ marginRight: 5, marginLeft: 210 }}
+								onPress={addComment}
+							/>
+							<Button
+								title="취소"
+								type="outline"
+								style={{ width: 50, alignItems: 'flex-end' }}
+								onPress={() => {
+									setVisible(false);
+									textInput.onChange('');
+								}}
+							/>
+						</ButtonGroups>
+					</Overlay>
 					{loading ? (
 						<Loader />
 					) : (

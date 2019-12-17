@@ -11,6 +11,6 @@ const Text = styled.Text``;
 
 export default () => (
 	<View>
-		<Text>UploadPost</Text>
+		<Text>TakePhoto</Text>
 	</View>
 );

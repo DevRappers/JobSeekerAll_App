@@ -9,7 +9,8 @@
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import NewHobby from '../screens/Post/NewHobby';
 import NewStudy from '../screens/Post/NewStudy';
-import UploadPost from '../screens/Post/UploadPost';
+import SelectPhoto from '../screens/Post/SelectPhoto';
+import TakePhoto from '../screens/Post/TakePhoto';
 import { createStackNavigator, HeaderTitle } from 'react-navigation-stack';
 import { stackStyles } from './config';
 import styles from '../styles';
@@ -55,7 +56,18 @@ export default createStackNavigator(
 				title: '빠른추가'
 			}
 		},
-		UploadPost
+		SelectPhoto: {
+			screen: SelectPhoto,
+			navigationOptions: {
+				title: '사진선택'
+			}
+		},
+		TakePhoto: {
+			screen: TakePhoto,
+			navigationOptions: {
+				header: null
+			}
+		}
 	},
 	{
 		defaultNavigationOptions: {

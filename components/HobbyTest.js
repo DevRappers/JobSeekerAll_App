@@ -162,31 +162,33 @@ export default ({ navigation, id, switchs, information, caption, posts }) => {
 						style={{ marginLeft: 10, marginRight: 10 }}
 					/>
 					<Overlay isVisible={visible} height={310} borderRadius={10}>
-						<TextareaItem
-							onChangeText={textInput.onChange}
-							value={textInput.value}
-							rows={10}
-							placeholder="방명록을 입력하세요."
-							count={50}
-							style={{ fontSize: 14 }}
-						/>
-						<ButtonGroups>
-							<Button
-								title="확인"
-								type="outline"
-								style={{ marginRight: 5, marginLeft: 210 }}
-								onPress={addComment}
+						<View>
+							<TextareaItem
+								onChangeText={textInput.onChange}
+								value={textInput.value}
+								rows={10}
+								placeholder="방명록을 입력하세요."
+								count={50}
+								style={{ fontSize: 14 }}
 							/>
-							<Button
-								title="취소"
-								type="outline"
-								style={{ width: 50, alignItems: 'flex-end' }}
-								onPress={() => {
-									setVisible(false);
-									textInput.onChange('');
-								}}
-							/>
-						</ButtonGroups>
+							<ButtonGroups>
+								<Button
+									title="확인"
+									type="outline"
+									style={{ marginRight: 5, marginLeft: 210 }}
+									onPress={addComment}
+								/>
+								<Button
+									title="취소"
+									type="outline"
+									style={{ width: 50, alignItems: 'flex-end' }}
+									onPress={() => {
+										setVisible(false);
+										textInput.onChange('');
+									}}
+								/>
+							</ButtonGroups>
+						</View>
 					</Overlay>
 					{loading ? (
 						<Loader />

@@ -60,32 +60,27 @@ export default ({ navigation }) => {
 			type: type.toLowerCase(),
 			uri: photo.uri
 		});
-		try {
-			const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
-				headers: {
-					'content-type': 'multipart/form-data'
-				}
-			});
-			setUri(path);
-			console.log(path);
-		} catch (e) {
-			Alert.alert('사진 업로드에 실패하였습니다!!!');
-			console.log(e);
-		}
+
+		const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
+			headers: {
+				'content-type': 'multipart/form-data'
+			}
+		});
+
 		try {
 			setIsLoading(true);
 			const { data: { createHobby } } = await uploadMutation({
 				variables: {
 					title: titleInput.value,
+					proImage: 'http://localhost:4000/' + path,
 					caption: captionInput.value,
 					information: informationInput.value,
-					area: areaInput.value,
-					proImage: imageInput.value
+					area: areaInput.value
 				}
 			});
 			if (createHobby) {
 				Alert.alert('생성 성공!!!');
-				navigation.goBack(null);
+				navigation.navigate('Hobby');
 			}
 		} catch (e) {
 			console.log(e);

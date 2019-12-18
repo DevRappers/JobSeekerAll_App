@@ -16,6 +16,23 @@ const View = styled.View`
 	align-items: center;
 `;
 
+const UploadButton = styled.TouchableOpacity`
+	width: 100px;
+	height: 30px;
+	position: absolute;
+	right: 5px;
+	top: 15px;
+	background-color: ${styles.blueColor};
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+`;
+
+const Text = styled.Text`
+	color: white;
+	font-weight: 600;
+`;
+
 const Icon = styled.View``;
 
 const Button = styled.View`
@@ -31,17 +48,21 @@ export default ({ navigation }) => {
 	const [ loading, setLoading ] = useState(true);
 	const [ hasPermission, setHasPermission ] = useState(false);
 	const [ cameraType, setCameraType ] = useState(Camera.Constants.Type.back);
+	const [ selected, setSelected ] = useState();
 	const takePhoto = async () => {
 		if (!canTakePhoto) {
+			setCanTakePhoto(true);
+			cameraRef.current.resumePreview();
 			return;
 		}
 		try {
+			setCanTakePhoto(false);
 			cameraRef.current.pausePreview();
 			const { uri } = await cameraRef.current.takePictureAsync({
 				quality: 1
 			});
 			const asset = await MediaLibrary.createAssetAsync(uri);
-			console.log(asset);
+			setSelected(asset);
 		} catch (e) {
 			console.log(e);
 			setCanTakePhoto(true);
@@ -50,7 +71,8 @@ export default ({ navigation }) => {
 	const askPermission = async () => {
 		try {
 			const { status } = await Permissions.askAsync(Permissions.CAMERA);
-			if (status === 'granted') {
+			const rollstatus = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+			if (status === 'granted' && rollstatus.status === 'granted') {
 				setHasPermission(true);
 			}
 		} catch (e) {
@@ -67,6 +89,13 @@ export default ({ navigation }) => {
 			setCameraType(Camera.Constants.Type.front);
 		}
 	};
+
+	const handleSelected = () => {
+		const setChange = navigation.getParam('setChange');
+		setChange(selected);
+		navigation.goBack(null);
+	};
+
 	useEffect(() => {
 		askPermission();
 	}, []);
@@ -95,9 +124,14 @@ export default ({ navigation }) => {
 								/>
 							</Icon>
 						</TouchableOpacity>
+						{!canTakePhoto && (
+							<UploadButton onPress={handleSelected}>
+								<Text>선택</Text>
+							</UploadButton>
+						)}
 					</Camera>
 					<View>
-						<TouchableOpacity onPress={takePhoto} disabled={!canTakePhoto}>
+						<TouchableOpacity onPress={takePhoto}>
 							<Button />
 						</TouchableOpacity>
 					</View>

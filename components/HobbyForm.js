@@ -79,7 +79,7 @@ export default ({
 						navigation.navigate('SelectPhoto', { setChange: setChange });
 						break;
 					case 1:
-						navigation.navigate('TakePhoto');
+						navigation.navigate('TakePhoto', { setChange: setChange });
 						break;
 				}
 			}

@@ -25,7 +25,7 @@ const Button = styled.View`
 	border: 10px solid ${styles.lightGreyColor};
 `;
 
-export default () => {
+export default ({ navigation }) => {
 	const cameraRef = useRef();
 	const [ canTakePhoto, setCanTakePhoto ] = useState(true);
 	const [ loading, setLoading ] = useState(true);
@@ -37,7 +37,6 @@ export default () => {
 		}
 		try {
 			cameraRef.current.pausePreview();
-			Camera.pausePreview();
 			const { uri } = await cameraRef.current.takePictureAsync({
 				quality: 1
 			});

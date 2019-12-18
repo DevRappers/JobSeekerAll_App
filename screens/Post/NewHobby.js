@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import axios from 'axios';
 import HobbyForm from '../../components/HobbyForm';
 import useInput from '../../hooks/useInput';
 import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
@@ -22,6 +22,16 @@ const UPLOAD = gql`
 export default ({ navigation }) => {
 	const [ loading, setIsLoading ] = useState(false);
 
+	const [ photo, setPhoto ] = useState();
+	const [ uri, setUri ] = useState();
+	const [ heights, setheights ] = useState(0);
+
+	const setChange = (photo) => {
+		setPhoto(photo);
+		setUri(photo.uri);
+		setheights(80);
+	};
+
 	const titleInput = useInput('');
 	const captionInput = useInput('');
 	const areaInput = useInput('');
@@ -38,9 +48,29 @@ export default ({ navigation }) => {
 			captionInput.value === '' ||
 			areaInput.value === '' ||
 			informationInput.value === '' ||
-			imageInput.value === ''
+			photo.uri === ''
 		) {
 			Alert.alert('모든 필드를 입력해주세요!');
+		}
+		const formData = new FormData();
+		const name = photo.filename;
+		const [ , type ] = name.split('.');
+		formData.append('file', {
+			name,
+			type: type.toLowerCase(),
+			uri: photo.uri
+		});
+		try {
+			const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
+				headers: {
+					'content-type': 'multipart/form-data'
+				}
+			});
+			setUri(path);
+			console.log(path);
+		} catch (e) {
+			Alert.alert('사진 업로드에 실패하였습니다!!!');
+			console.log(e);
 		}
 		try {
 			setIsLoading(true);
@@ -68,6 +98,9 @@ export default ({ navigation }) => {
 		<HobbyForm
 			navigation={navigation}
 			title="신규 모임 생성"
+			uri={uri}
+			heights={heights}
+			setChange={setChange}
 			loading={loading}
 			titleInput={titleInput}
 			captionInput={captionInput}

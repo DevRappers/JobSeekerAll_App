@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Alert } from 'react-native';
+import { ActivityIndicator, Image } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
@@ -23,6 +23,8 @@ const STextInput = styled.TextInput`
 	width: ${constants.width - 180};
 `;
 
+const View = styled.View`align-items: center;`;
+
 const Button = styled.TouchableOpacity`
 	background-color: ${(props) => props.theme.blueColor};
 	padding: 10px;
@@ -41,6 +43,9 @@ export default ({
 	navigation,
 	loading = false,
 	title,
+	uri,
+	heights,
+	setChange,
 	titleInput,
 	informationInput,
 	captionInput,
@@ -71,7 +76,7 @@ export default ({
 			(buttonIndex) => {
 				switch (buttonIndex) {
 					case 0:
-						navigation.navigate('SelectPhoto');
+						navigation.navigate('SelectPhoto', { setChange: setChange });
 						break;
 					case 1:
 						navigation.navigate('TakePhoto');
@@ -91,11 +96,14 @@ export default ({
 						multiline={true}
 						placeholderTextColor={styles.darkGreyColor}
 					/>
+					<View>
+						<Image source={{ uri }} style={{ height: heights, width: 80, alignItems: 'center' }} />
+					</View>
 					<STextInput
 						onFocus={showImageSheet}
 						onChangeText={showImageSheet}
 						value={imageInput.value}
-						placeholder="대표사진"
+						placeholder="대표사진을 선택해주세요."
 						multiline={true}
 						placeholderTextColor={styles.darkGreyColor}
 					/>

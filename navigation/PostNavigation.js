@@ -53,7 +53,8 @@ export default createStackNavigator(
 		Tabs: {
 			screen: PostTabs,
 			navigationOptions: {
-				title: '빠른추가'
+				title: '빠른추가',
+				headerBackTitle: null
 			}
 		},
 		SelectPhoto: {

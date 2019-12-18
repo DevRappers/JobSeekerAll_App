@@ -28,6 +28,7 @@ export default ({ navigation }) => {
 	const refetchData = async () => {
 		try {
 			await refetch();
+			console.log(data);
 		} catch (e) {
 			console.log(e);
 		}
@@ -145,7 +146,9 @@ export default ({ navigation }) => {
 							>
 								<ListItem title={'나의 스터디'} bottomDivider chevron />
 							</TouchableOpacity>
-							<TouchableOpacity>
+							<TouchableOpacity
+								onPress={() => navigation.navigate('MyHobby', { myHobby: data.me.myHobby })}
+							>
 								<ListItem title={'나의 취미모임'} bottomDivider chevron />
 							</TouchableOpacity>
 							<TouchableOpacity onPress={delUser}>

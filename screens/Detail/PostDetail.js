@@ -17,12 +17,10 @@ const CommentCount = styled.Text`
 export default ({ navigation }) => {
 	const files = navigation.getParam('files');
 	const isMyPost = navigation.getParam('isMyPost');
-	console.log(isMyPost);
 	const id = navigation.getParam('id');
 	const createdAt = navigation.getParam('createdAt');
 	const title = navigation.getParam('title');
 	const caption = navigation.getParam('caption');
-	console.log(files);
 	const date = new Date(createdAt);
 	const dateString = date.toLocaleDateString('ko-KR', {
 		year: 'numeric',

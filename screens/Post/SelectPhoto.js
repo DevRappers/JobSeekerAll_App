@@ -31,7 +31,6 @@ export default ({ navigation }) => {
 	const [ allPhotos, setAllPhotos ] = useState();
 	const changeSelected = (photo) => {
 		setSelected(photo);
-		console.log(photo);
 	};
 	const getPhotos = async () => {
 		try {

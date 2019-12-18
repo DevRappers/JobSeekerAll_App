@@ -82,6 +82,10 @@ export const USER_FRAGMENT = gql`
         myStudy{
             ...StudyParts
         }
+		myHobby{
+			...HobbyParts
+		}
     }
     ${STUDY_FRAGMENT}
+	${HOBBY_FRAGMENT}
 `;

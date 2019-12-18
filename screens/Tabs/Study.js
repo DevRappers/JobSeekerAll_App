@@ -8,15 +8,6 @@ import { SEARCH_STUDY_QUERY } from './TabsQueries';
 import StudyPost from '../../components/StudyPost';
 import { JOB_LIST } from '../../DataList';
 
-const View = styled.View`
-	justify-content: center;
-	align-items: center;
-	flex: 1;
-`;
-const Text = styled.Text``;
-
-const Container = styled.View``;
-
 export default ({ navigation }) => {
 	const [ buttonIndex, setButtonIndex ] = useState(0);
 	const [ refreshing, setRefreshing ] = useState(false);

@@ -1,43 +1,10 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import useInput from '../../hooks/useInput';
-import styles from '../../styles';
-import constants from '../../constants';
 import { useMutation } from 'react-apollo-hooks';
 import { SEARCH_STUDY_QUERY } from '../Tabs/TabsQueries';
 import StudyForm from '../../components/StudyForm';
-
-const Container = styled.View`
-	padding: 20px;
-	flex-direction: row;
-	align-items: center;
-`;
-
-const Form = styled.View`justify-content: flex-start;`;
-
-const STextInput = styled.TextInput`
-	margin-bottom: 10px;
-	border: 0px solid ${styles.lightGreyColor};
-	border-bottom-width: 1px;
-	padding-bottom: 10px;
-	width: ${constants.width - 180};
-`;
-
-const Button = styled.TouchableOpacity`
-	background-color: ${(props) => props.theme.blueColor};
-	padding: 10px;
-	border-radius: 4px;
-	align-items: center;
-	justify-content: center;
-	margin-top: 10px;
-`;
-
-const Text = styled.Text`
-	color: white;
-	font-weight: 600;
-`;
 
 const EDIT = gql`
 	mutation editStudy(
@@ -86,6 +53,7 @@ export default ({ navigation }) => {
 		) {
 			Alert.alert('모든 필드를 입력해주세요!');
 		}
+
 		try {
 			setIsLoading(true);
 			const { data: { editStudy } } = await uploadMutation({

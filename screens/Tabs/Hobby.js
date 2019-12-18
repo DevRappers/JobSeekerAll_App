@@ -81,7 +81,7 @@ export default ({ navigation }) => {
 					selectedButtonStyle={{ backgroundColor: '#2BC0BC' }}
 				/>
 			</ScrollView>
-			{loading ? <Loader /> : <HobbyPost navigation={navigation} data={data.searchHobby} />}
+			{loading ? <Loader /> : data && <HobbyPost navigation={navigation} data={data.searchHobby} />}
 		</ScrollView>
 	);
 };

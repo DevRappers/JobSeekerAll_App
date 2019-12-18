@@ -14,6 +14,7 @@ export default ({ data, navigation }) => {
 					const {
 						id,
 						isMyHobby,
+						area,
 						title,
 						proImage,
 						caption,
@@ -26,6 +27,7 @@ export default ({ data, navigation }) => {
 					navigation.navigate('HobbyDetail', {
 						id,
 						isMyHobby,
+						area,
 						title,
 						proImage,
 						caption,

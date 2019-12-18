@@ -26,6 +26,10 @@ import HobbyDetail from '../screens/Detail/HobbyDetail';
 import HobbyLink from '../components/HobbyLink';
 import PostDetail from '../screens/Detail/PostDetail';
 import PostLink from '../components/PostLink';
+import SelectPhoto from '../screens/Post/SelectPhoto';
+import TakePhoto from '../screens/Post/TakePhoto';
+import HobbyEdit from '../screens/Edit/HobbyEdit';
+import NewPost from '../screens/Post/NewPost';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -59,12 +63,26 @@ const stackFactory = (initialRoute, customConfig) =>
 				headerRight: navigation.getParam('isMyStudy') ? <StudyLink /> : null
 			})
 		},
+		HobbyEdit: {
+			screen: HobbyEdit,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '모임수정'
+			})
+		},
 		HobbyDetail: {
 			screen: HobbyDetail,
 			navigationOptions: ({ navigation }) => ({
 				headerTintColor: styles.blackColor,
 				title: '취미모임',
 				headerRight: navigation.getParam('isMyHobby') ? <HobbyLink /> : null
+			})
+		},
+		NewPost: {
+			screen: NewPost,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '공고올리기'
 			})
 		},
 		PostDetail: {
@@ -76,6 +94,18 @@ const stackFactory = (initialRoute, customConfig) =>
 					<PostLink id={navigation.getParam('id')} postId={navigation.getParam('hobbyId')} />
 				) : null
 			})
+		},
+		SelectPhoto: {
+			screen: SelectPhoto,
+			navigationOptions: {
+				title: '사진선택'
+			}
+		},
+		TakePhoto: {
+			screen: TakePhoto,
+			navigationOptions: {
+				title: '사진촬영'
+			}
 		}
 	});
 

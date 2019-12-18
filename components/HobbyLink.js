@@ -58,8 +58,17 @@ export default withNavigation(({ navigation }) => {
 						deleteStudyPost();
 						break;
 					case 1:
+						navigation.navigate('HobbyEdit', {
+							id: navigation.getParam('id'),
+							area: navigation.getParam('area'),
+							title: navigation.getParam('title'),
+							proImage: navigation.getParam('proImage'),
+							caption: navigation.getParam('caption'),
+							information: navigation.getParam('information')
+						});
 						break;
 					case 2:
+						navigation.navigate('NewPost', { id: navigation.getParam('id') });
 						break;
 					case 3:
 						break;

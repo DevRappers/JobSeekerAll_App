@@ -10,6 +10,18 @@ export const STUDY_QUERY = gql`
 	${STUDY_FRAGMENT}
 `;
 
+export const ADMIN_POST_QUERY = gql`
+	{
+		allAdminPost {
+			id
+			title
+			caption
+			img
+			createdAt
+		}
+	}
+`;
+
 export const SEARCH_STUDY_QUERY = gql`
 	query searchStudy($term: String!) {
 		searchStudy(term: $term) {

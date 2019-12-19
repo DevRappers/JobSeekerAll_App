@@ -8,10 +8,10 @@ import { ListItem } from 'react-native-elements';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { Modal, Provider } from '@ant-design/react-native';
-import { USER_FRAGMENT } from '../../fragments';
 import Loader from '../../components/Loader';
-import { DELETE_USER, CHANGE_USERNAME } from './TabsQueries';
 import { useLogOut } from '../../AuthContext';
+import { USER_FRAGMENT } from '../../fragments';
+import { DELETE_USER, CHANGE_USERNAME } from './TabsQueries';
 
 export const ME = gql`
   {
@@ -159,10 +159,6 @@ export default ({ navigation }) => {
 							</TouchableOpacity>
 							<TouchableOpacity onPress={logOutButton}>
 								<ListItem title={'로그아웃'} bottomDivider chevron />
-							</TouchableOpacity>
-							<Text style={{ marginTop: 30, paddingLeft: 10, paddingBottom: 5 }}>기타</Text>
-							<TouchableOpacity>
-								<ListItem title={'개발자 정보'} bottomDivider chevron />
 							</TouchableOpacity>
 						</View>
 					)

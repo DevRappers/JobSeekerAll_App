@@ -1,8 +1,12 @@
+/*
+	NewStudy
+	- 스터디 생성 화면 
+*/
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { gql } from 'apollo-boost';
-import useInput from '../../hooks/useInput';
 import { useMutation } from 'react-apollo-hooks';
+import useInput from '../../hooks/useInput';
 import { SEARCH_STUDY_QUERY } from '../Tabs/TabsQueries';
 import StudyForm from '../../components/StudyForm';
 

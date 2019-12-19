@@ -1,3 +1,7 @@
+/*
+	SelectPhoto
+	- 사진 선택 화면
+*/
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as Permissions from 'expo-permissions';

@@ -1,5 +1,9 @@
+/*
+	HobbyDetail
+	- 취미모임 상세화면 Screen
+*/
 import React, { useState } from 'react';
-import { Image, View, TouchableOpacity, ScrollView, Text, StyleSheet } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import { SegmentedControl } from '@ant-design/react-native';
 import styled from 'styled-components';
 import HobbyAll from '../../components/HobbyAll';
@@ -18,14 +22,11 @@ const Bold = styled.Text`
 `;
 
 export default ({ navigation }) => {
-	const isMyHobby = navigation.getParam('isMyHobby');
 	const id = navigation.getParam('id');
 	const title = navigation.getParam('title');
 	const proImage = navigation.getParam('proImage');
 	const caption = navigation.getParam('caption');
 	const information = navigation.getParam('information');
-	const postsCount = navigation.getParam('postsCount');
-	const commentCount = navigation.getParam('commentCount');
 	const posts = navigation.getParam('posts');
 	const comments = navigation.getParam('comments');
 
@@ -62,9 +63,3 @@ export default ({ navigation }) => {
 		</ScrollView>
 	);
 };
-
-const styles = StyleSheet.create({
-	scene: {
-		flex: 1
-	}
-});

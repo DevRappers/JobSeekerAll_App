@@ -1,3 +1,8 @@
+/*
+	StudyDetail
+	- 스터디 상세화면 스크린
+*/
+
 import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-apollo-hooks';
@@ -16,7 +21,6 @@ const STUDY_DETAIL = gql`
 `;
 
 const View = styled.View``;
-const Text = styled.Text``;
 
 export default ({ navigation }) => {
 	const { loading, data } = useQuery(STUDY_DETAIL, {

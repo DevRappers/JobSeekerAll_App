@@ -1,14 +1,15 @@
 /*
-	Login Screen
+	Login
+	- 로그인 화면 Screen
 */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { useMutation } from 'react-apollo-hooks';
 import AuthButtton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
-import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { REQUEST_SECRET, LOG_IN } from './AuthQueries';
-import { useMutation } from 'react-apollo-hooks';
 import { useLogIn } from '../../AuthContext';
 
 const View = styled.View`

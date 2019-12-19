@@ -5,27 +5,26 @@
     Hobby: 취미모임관련 화면 
     Study: 스터디관련 화면 
     Profile : 내정보 화면 
-    Search : 검색하는 화면 
 */
 import React from 'react';
 import { View, Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+import styles from '../styles';
+import StudyLink from '../components/StudyLink';
+import NavIcon from '../components/NavIcon';
+import MessagesLink from '../components/MessagesLink';
+import HobbyLink from '../components/HobbyLink';
+import PostLink from '../components/PostLink';
 import Home from '../screens/Tabs/Home';
 import Hobby from '../screens/Tabs/Hobby';
 import Study from '../screens/Tabs/Study';
 import Profile from '../screens/Tabs/Profile';
 import StudyDetail from '../screens/Detail/StudyDetail';
-import MessagesLink from '../components/MessagesLink';
-import NavIcon from '../components/NavIcon';
-import styles from '../styles';
-import StudyLink from '../components/StudyLink';
 import MyStudy from '../screens/My/MyStudy';
 import StudyEdit from '../screens/Edit/StudyEdit';
 import HobbyDetail from '../screens/Detail/HobbyDetail';
-import HobbyLink from '../components/HobbyLink';
 import PostDetail from '../screens/Detail/PostDetail';
-import PostLink from '../components/PostLink';
 import SelectPhoto from '../screens/Post/SelectPhoto';
 import TakePhoto from '../screens/Post/TakePhoto';
 import HobbyEdit from '../screens/Edit/HobbyEdit';

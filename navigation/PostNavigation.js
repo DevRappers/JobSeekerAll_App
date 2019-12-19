@@ -4,16 +4,15 @@
 	간편하게 새로운 모임과 스터디를 생성할 수 있도록 구현하였음 
 	newHobby : 새로운 취미모임 생성 
 	newStudy : 새로운 스터디 생성 
-	UploadPost : 아직 미정임 
 */
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
+import { stackStyles } from './config';
+import styles from '../styles';
 import NewHobby from '../screens/Post/NewHobby';
 import NewStudy from '../screens/Post/NewStudy';
 import SelectPhoto from '../screens/Post/SelectPhoto';
 import TakePhoto from '../screens/Post/TakePhoto';
-import { createStackNavigator, HeaderTitle } from 'react-navigation-stack';
-import { stackStyles } from './config';
-import styles from '../styles';
 
 const PostTabs = createMaterialTopTabNavigator(
 	{

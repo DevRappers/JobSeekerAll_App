@@ -1,3 +1,7 @@
+/*
+	AuthQueries
+	- 회원가입, 로그인, 이메일 인증시 사용되는 쿼리들을 모아놓은 js
+*/
 import { gql } from 'apollo-boost';
 
 export const REQUEST_SECRET = gql`

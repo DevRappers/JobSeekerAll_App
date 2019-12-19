@@ -1,7 +1,11 @@
+/*
+	Study
+	- 스터디 화면
+*/
+
 import React, { useState } from 'react';
 import { ScrollView, RefreshControl, Platform } from 'react-native';
 import { SearchBar, ButtonGroup } from 'react-native-elements';
-import styled from 'styled-components';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import { SEARCH_STUDY_QUERY } from './TabsQueries';

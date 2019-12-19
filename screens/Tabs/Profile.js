@@ -1,11 +1,15 @@
+/*
+	Profile
+	- 내정보 화면 
+*/
 import React, { useEffect } from 'react';
 import { ScrollView, TouchableOpacity, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { gql } from 'apollo-boost';
-import { USER_FRAGMENT } from '../../fragments';
-import Loader from '../../components/Loader';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { Modal, Provider } from '@ant-design/react-native';
+import { USER_FRAGMENT } from '../../fragments';
+import Loader from '../../components/Loader';
 import { DELETE_USER, CHANGE_USERNAME } from './TabsQueries';
 import { useLogOut } from '../../AuthContext';
 

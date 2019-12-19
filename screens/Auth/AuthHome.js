@@ -1,3 +1,7 @@
+/*
+	AuthHome
+	- 로그아웃 상태의 첫 화면 버튼을 통해 로그인 또는 회원가입으로 네비게이션 이동이 가능함.
+*/
 import React from 'react';
 import styled from 'styled-components';
 import constants from '../../constants';

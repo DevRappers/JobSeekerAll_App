@@ -1,17 +1,23 @@
+/*
+	Home
+	- 홈화면으로 취준생에게 도움되는 포스트를 보여줌
+*/
 import React, { useState } from 'react';
 import { ScrollView, RefreshControl, Image, View } from 'react-native';
 import { Card } from 'react-native-elements';
-import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
+import styled from 'styled-components';
+import Loader from '../../components/Loader';
 import { ADMIN_POST_QUERY } from './TabsQueries';
 import constants from '../../constants';
-import styled from 'styled-components';
 
 const Bold = styled.Text`
 	font-weight: 500;
 	margin-bottom: 10px;
 `;
+
 const InfoContainer = styled.View`padding: 10px;`;
+
 const CommentCount = styled.Text`
 	opacity: 0.5;
 	font-size: 13px;

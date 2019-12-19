@@ -1,9 +1,13 @@
+/*
+	Signup
+	- 회원가입 screen으로 페이스북, 구글 회원가입 및 이메일을 통한 회원가입이 가능하게 만들어놓음
+*/
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AuthButton from '../../components/AuthButton';
 import { Alert } from 'react-native';
 import * as Facebook from 'expo-facebook';
 import * as Google from 'expo-google-app-auth';
+import AuthButton from '../../components/AuthButton';
 
 const View = styled.View`
 	background-color: ${(props) => props.theme.mintColor};

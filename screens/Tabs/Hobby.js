@@ -1,21 +1,15 @@
+/*
+	Hobby
+	- 취미모임 화면
+*/
 import React, { useState } from 'react';
 import { ScrollView, RefreshControl, Platform } from 'react-native';
 import { SearchBar, ButtonGroup } from 'react-native-elements';
-import styled from 'styled-components';
-import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
+import Loader from '../../components/Loader';
 import { SEARCH_HOBBY_QUERY } from './TabsQueries';
 import { AREA_LIST } from '../../DataList';
 import HobbyPost from '../../components/HobbyPost';
-
-const View = styled.View`
-	justify-content: center;
-	align-items: center;
-	flex: 1;
-`;
-const Text = styled.Text``;
-
-const Container = styled.View``;
 
 export default ({ navigation }) => {
 	const [ buttonIndex, setButtonIndex ] = useState(0);

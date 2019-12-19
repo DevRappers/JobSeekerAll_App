@@ -1,11 +1,15 @@
+/*
+	Privacy
+	- 회원가입할때 사용하는 양식 Screen
+*/
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Alert } from 'react-native';
+import { useMutation } from 'react-apollo-hooks';
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
-import { Alert } from 'react-native';
-import { useMutation } from 'react-apollo-hooks';
 import { CREATE_ACCOUNT } from './AuthQueries';
 
 const View = styled.View`

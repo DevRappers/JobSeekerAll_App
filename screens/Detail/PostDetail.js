@@ -1,3 +1,8 @@
+/*
+	PostDetail
+	- 포스트 상세화면 스크린
+*/
+
 import React from 'react';
 import { Image, View, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
@@ -8,7 +13,9 @@ const Bold = styled.Text`
 	font-weight: 500;
 	margin-bottom: 10px;
 `;
+
 const InfoContainer = styled.View`padding: 10px;`;
+
 const CommentCount = styled.Text`
 	opacity: 0.5;
 	font-size: 13px;
@@ -16,8 +23,6 @@ const CommentCount = styled.Text`
 
 export default ({ navigation }) => {
 	const files = navigation.getParam('files');
-	const isMyPost = navigation.getParam('isMyPost');
-	const id = navigation.getParam('id');
 	const createdAt = navigation.getParam('createdAt');
 	const title = navigation.getParam('title');
 	const caption = navigation.getParam('caption');

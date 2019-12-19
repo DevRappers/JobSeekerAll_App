@@ -1,10 +1,14 @@
+/*
+	Confirm
+	- 이메일 인증시 사용되는 스크린
+*/
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { useMutation } from 'react-apollo-hooks';
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
-import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { useMutation } from 'react-apollo-hooks';
 import { CONFIRM_SECRET } from './AuthQueries';
 import { useLogIn } from '../../AuthContext';
 
@@ -17,7 +21,6 @@ const View = styled.View`
 
 export default ({ navigation }) => {
 	const confirmInput = useInput('');
-	// Hooks함수는 다른 function에서 사용불가능함
 	const logIn = useLogIn();
 	const [ loading, setLoading ] = useState(false);
 	const [ confirmSecretMutation ] = useMutation(CONFIRM_SECRET, {

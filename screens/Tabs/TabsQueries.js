@@ -1,3 +1,7 @@
+/*
+	TabQueries
+	- TabNavigation에서 자주사용되는 쿼리를 정리해놓은 js
+*/
 import { gql } from 'apollo-boost';
 import { STUDY_FRAGMENT, HOBBY_FRAGMENT } from '../../fragments';
 

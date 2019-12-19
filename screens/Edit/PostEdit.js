@@ -1,9 +1,13 @@
+/*
+	PostEdit
+	- 포스트 수정 스크린
+*/
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { gql } from 'apollo-boost';
 import axios from 'axios';
-import useInput from '../../hooks/useInput';
 import { useMutation } from 'react-apollo-hooks';
+import useInput from '../../hooks/useInput';
 import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 import PostForm from '../../components/PostForm';
 import { HOBBY_DETAIL } from '../../components/Query';

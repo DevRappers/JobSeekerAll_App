@@ -1,13 +1,17 @@
+/*
+	TakePhoto
+	- 사진 촬영 화면
+*/
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Loader from '../../components/Loader';
-import constants from '../../constants';
 import { Camera } from 'expo-camera';
 import { Platform } from '@unimodules/core';
+import Loader from '../../components/Loader';
+import constants from '../../constants';
 import styles from '../../styles';
 
 const View = styled.View`

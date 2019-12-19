@@ -1,11 +1,15 @@
+/*
+	NewPost
+	- 포스트 생성 화면
+*/
 import React, { useState } from 'react';
 import axios from 'axios';
-import useInput from '../../hooks/useInput';
-import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 import { Alert } from 'react-native';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
+import useInput from '../../hooks/useInput';
 import PostForm from '../../components/PostForm';
+import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 import { HOBBY_DETAIL } from '../../components/Query';
 
 const UPLOAD = gql`
@@ -70,12 +74,12 @@ export default ({ navigation }) => {
 				}
 			});
 			if (upload) {
-				Alert.alert('생성 성공!!!');
+				Alert.alert('포스트 생성 성공!!!');
 				navigation.goBack(null);
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('공고생성 에러!!! 다시시도해주세요.');
+			Alert.alert('포스트 생성 실패!!! 다시시도해주세요.');
 		} finally {
 			setIsLoading(false);
 		}
@@ -83,7 +87,7 @@ export default ({ navigation }) => {
 	return (
 		<PostForm
 			navigation={navigation}
-			title="신규 공고 생성"
+			title="신규 포스트 생성"
 			uri={uri}
 			heights={heights}
 			setChange={setChange}

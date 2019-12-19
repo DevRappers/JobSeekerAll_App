@@ -1,11 +1,15 @@
+/*
+	NewHobby
+	- 취미 모임 생성 화면
+*/
 import React, { useState } from 'react';
 import axios from 'axios';
-import HobbyForm from '../../components/HobbyForm';
-import useInput from '../../hooks/useInput';
-import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 import { Alert } from 'react-native';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
+import HobbyForm from '../../components/HobbyForm';
+import useInput from '../../hooks/useInput';
+import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 
 const UPLOAD = gql`
 	mutation createHobby(

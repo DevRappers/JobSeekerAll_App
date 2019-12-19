@@ -31,6 +31,7 @@ import TakePhoto from '../screens/Post/TakePhoto';
 import HobbyEdit from '../screens/Edit/HobbyEdit';
 import NewPost from '../screens/Post/NewPost';
 import MyHobby from '../screens/My/MyHobby';
+import PostEdit from '../screens/Edit/PostEdit';
 
 // 헤더를 만들어주기 위한 함수로 tabnavigation의 있는 정보가 들어오면 스택네비게이션으로 반환해줌
 // tab네비게이션을 스택네비게이션으로 만들어주는 과정
@@ -91,6 +92,13 @@ const stackFactory = (initialRoute, customConfig) =>
 			navigationOptions: ({ navigation }) => ({
 				headerTintColor: styles.blackColor,
 				title: '공고올리기'
+			})
+		},
+		PostEdit: {
+			screen: PostEdit,
+			navigationOptions: ({ navigation }) => ({
+				headerTintColor: styles.blackColor,
+				title: '포스트수정'
 			})
 		},
 		PostDetail: {

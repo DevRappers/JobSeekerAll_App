@@ -28,7 +28,6 @@ export default ({ navigation }) => {
 	const refetchData = async () => {
 		try {
 			await refetch();
-			console.log(data);
 		} catch (e) {
 			console.log(e);
 		}

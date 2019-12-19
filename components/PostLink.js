@@ -61,6 +61,13 @@ export default withNavigation(({ navigation, id, postId }) => {
 			(buttonIndex) => {
 				switch (buttonIndex) {
 					case 0:
+						navigation.navigate('PostEdit', {
+							hobbyId: navigation.getParam('hobbyId'),
+							id: navigation.getParam('id'),
+							files: navigation.getParam('files'),
+							title: navigation.getParam('title'),
+							caption: navigation.getParam('caption')
+						});
 						break;
 					case 1:
 						deletePost();

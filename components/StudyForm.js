@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { ActivityIndicator, Alert } from 'react-native';
+/*
+	StudyForm
+	- 스터디 생성, 수정 할때 사용하는 Form컴포넌트
+*/
+import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
-import { JOB_LIST } from '../DataList';
 import styles from '../styles';
 import constants from '../constants';
 
@@ -57,9 +60,7 @@ export default ({
 				options: BUTTONS
 			},
 			(buttonIndex) => {
-				if (buttonIndex !== 7) {
-					jobInput.onChange(BUTTONS[buttonIndex]);
-				}
+				jobInput.onChange(BUTTONS[buttonIndex]);
 			}
 		);
 	};

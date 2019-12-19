@@ -1,14 +1,18 @@
+/*
+	CommentLink
+	- 댓글 관련 Component로 댓글 삭제기능을 가지고 있음.
+*/
 import React from 'react';
 import { Platform, Alert } from 'react-native';
 import { ActionSheet } from '@ant-design/react-native';
 import styled from 'styled-components';
 import { withNavigation } from 'react-navigation';
-import styles from '../styles';
-import NavIcon from './NavIcon';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
+import styles from '../styles';
+import NavIcon from './NavIcon';
 import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
-import { HOBBY_DETAIL } from './HobbyTest';
+import { HOBBY_DETAIL } from './Query';
 
 const Container = styled.TouchableOpacity`align-items: flex-end;`;
 
@@ -18,6 +22,7 @@ export default withNavigation(({ navigation, id, postId }) => {
 			deleteComment(id: $id)
 		}
 	`;
+
 	const [ deleteCommentMutation ] = useMutation(DELETE_COMMENT, {
 		variables: {
 			id
@@ -44,7 +49,7 @@ export default withNavigation(({ navigation, id, postId }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('댓글 삭제 실패', '다시 시도해주세요.');
 		}
 	};
 

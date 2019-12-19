@@ -1,3 +1,7 @@
+/*
+	PostLink
+	- 포스트 수정 삭제시 navigation으로 이동시켜주는 컴포넌트
+*/
 import React from 'react';
 import { Platform, Alert } from 'react-native';
 import { ActionSheet } from '@ant-design/react-native';
@@ -7,8 +11,8 @@ import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
 import styles from '../styles';
 import NavIcon from './NavIcon';
-import { HOBBY_DETAIL } from './HobbyTest';
 import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
+import { HOBBY_DETAIL } from './Query';
 
 const Container = styled.TouchableOpacity`padding-right: 20px;`;
 
@@ -45,7 +49,7 @@ export default withNavigation(({ navigation, id, postId }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('포스트 삭제 실패!!!', '다시 시도해주세요.');
 		}
 	};
 
@@ -53,7 +57,7 @@ export default withNavigation(({ navigation, id, postId }) => {
 		const BUTTONS = [ '포스트수정', '포스트삭제', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '내 모임 관리',
+				title: '모임 포스트 관리',
 				options: BUTTONS,
 				cancelButtonIndex: 2,
 				destructiveButtonIndex: 1

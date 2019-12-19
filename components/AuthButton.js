@@ -1,10 +1,15 @@
+/*
+	AuthButton
+	- 회원가입, 로그인, 이메일 인증 시 사용되는 버튼 Component
+*/
 import React from 'react';
 import styled from 'styled-components';
-import constants from '../constants';
 import PropTypes from 'prop-types';
 import { ActivityIndicator } from 'react-native';
+import constants from '../constants';
 
 const Touchable = styled.TouchableOpacity``;
+
 const Container = styled.View`
 	background-color: ${(props) => (props.bgColor ? props.bgColor : props.theme.blueColor)};
 	padding: 10px;

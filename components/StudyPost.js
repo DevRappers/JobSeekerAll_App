@@ -1,3 +1,7 @@
+/*
+	StudyPost
+	- 스터디를 보여주는 컴포넌트 
+*/
 import React from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components';

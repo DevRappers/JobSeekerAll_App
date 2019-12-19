@@ -1,3 +1,7 @@
+/*
+	NavIcon
+	- Ionicons를 편하게 사용하려고 만든 Component
+*/
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';

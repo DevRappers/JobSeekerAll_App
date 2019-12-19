@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+/*
+	HobbyForm
+	- 취미모임 생성, 수정 템플릿 Component
+*/
+import React from 'react';
 import { ActivityIndicator, Image } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
@@ -57,7 +61,7 @@ export default ({
 	const showActionSheet = () => {
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '분야설정',
+				title: '지역설정',
 				options: AREA_LIST
 			},
 			(buttonIndex) => {
@@ -69,7 +73,7 @@ export default ({
 		const BUTTONS = [ '앨범에서 선택하기', '사진촬영', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '분야설정',
+				title: '사진업로드',
 				options: BUTTONS,
 				cancelButtonIndex: 2
 			},
@@ -92,7 +96,7 @@ export default ({
 					<STextInput
 						onChangeText={titleInput.onChange}
 						value={titleInput.value}
-						placeholder="모임명"
+						placeholder="취미모임명"
 						multiline={true}
 						placeholderTextColor={styles.darkGreyColor}
 					/>
@@ -103,7 +107,7 @@ export default ({
 						onFocus={showImageSheet}
 						onChangeText={showImageSheet}
 						value={imageInput.value}
-						placeholder="대표사진을 선택해주세요."
+						placeholder="대표사진을 선택"
 						multiline={true}
 						placeholderTextColor={styles.darkGreyColor}
 					/>

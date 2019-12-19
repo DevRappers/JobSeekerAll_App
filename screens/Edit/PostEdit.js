@@ -5,8 +5,8 @@ import axios from 'axios';
 import useInput from '../../hooks/useInput';
 import { useMutation } from 'react-apollo-hooks';
 import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
-import { HOBBY_DETAIL } from '../../components/HobbyTest';
 import PostForm from '../../components/PostForm';
+import { HOBBY_DETAIL } from '../../components/Query';
 
 const EDIT = gql`
 	mutation editPost($id: String!, $title: String, $caption: String, $file: String) {

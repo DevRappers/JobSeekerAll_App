@@ -1,3 +1,7 @@
+/*
+	StudyLink
+	- 스터디 삭제, 수정, 마감시 navigation을 이동시켜주는 컴포넌트
+*/
 import React from 'react';
 import { Platform, Alert } from 'react-native';
 import { ActionSheet } from '@ant-design/react-native';
@@ -51,7 +55,7 @@ export default withNavigation(({ navigation }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('스터디 삭제 실패!!!', '다시 시도해주세요.');
 		}
 	};
 	const endStudyPost = async () => {
@@ -71,14 +75,14 @@ export default withNavigation(({ navigation }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('모집마감을 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('스터디 모집 마감 실패!', '다시 시도해주세요.');
 		}
 	};
 	const showActionSheet = () => {
-		const BUTTONS = [ '글수정', '스터디마감', '글삭제', '취소' ];
+		const BUTTONS = [ '스터디수정', '스터디마감', '스터디삭제', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '내글관리',
+				title: '스터디 관리',
 				options: BUTTONS,
 				cancelButtonIndex: 3,
 				destructiveButtonIndex: 2
@@ -87,7 +91,7 @@ export default withNavigation(({ navigation }) => {
 				switch (buttonIndex) {
 					case 0:
 						if (navigation.getParam('studyEnd') === 2) {
-							Alert.alert('마감된 스터디는 수정 불가합니다.');
+							Alert.alert('이미 마감된 스터디는 수정 불가합니다.');
 							break;
 						}
 						navigation.navigate('StudyEdit', {

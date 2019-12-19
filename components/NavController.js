@@ -1,3 +1,7 @@
+/*
+	NavController
+	- 로그인 여부에 따라 Navigation을 정해주는 Component
+*/
 import React from 'react';
 import { View } from 'react-native';
 import { useIsLoggedIn } from '../AuthContext';

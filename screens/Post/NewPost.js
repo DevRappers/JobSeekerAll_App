@@ -5,8 +5,8 @@ import { SEARCH_HOBBY_QUERY } from '../Tabs/TabsQueries';
 import { Alert } from 'react-native';
 import { gql } from 'apollo-boost';
 import { useMutation } from 'react-apollo-hooks';
-import { HOBBY_DETAIL } from '../../components/HobbyTest';
 import PostForm from '../../components/PostForm';
+import { HOBBY_DETAIL } from '../../components/Query';
 
 const UPLOAD = gql`
 	mutation upload($title: String!, $caption: String!, $files: [String!]!, $hId: String!) {

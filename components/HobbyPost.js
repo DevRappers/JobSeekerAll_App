@@ -1,5 +1,9 @@
+/*
+	HobbyPost
+	- 취미모임을 Grid형태로 보여줄때 안에 들어가는 카드형태의 Component
+*/
 import React from 'react';
-import { ScrollView, Text, View, Image } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Grid } from '@ant-design/react-native';
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, View, TouchableOpacity, ScrollView, Text, StyleSheet } from 'react-native';
 import { SegmentedControl } from '@ant-design/react-native';
 import styled from 'styled-components';
-import HobbyTest from '../../components/HobbyTest';
+import HobbyAll from '../../components/HobbyAll';
 
 const ProfileHeader = styled.View`
 	padding: 20px;
@@ -50,7 +50,7 @@ export default ({ navigation }) => {
 				onChange={onChange}
 				onValueChange={onValueChange}
 			/>
-			<HobbyTest
+			<HobbyAll
 				navigation={navigation}
 				id={id}
 				switchs={value}

@@ -1,3 +1,7 @@
+/*
+	AuthInput
+	- 회원가입, 로그인, 이메일 인증 시 사용되는 Input Component
+*/
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

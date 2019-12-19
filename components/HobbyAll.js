@@ -1,14 +1,19 @@
+/*
+	HobbyAll
+	- 취미모임의 상세페이지 ( 방명록, 취미모임소개, 취미모임 공고)를 다루는 Component
+*/
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Card, WingBlank, TextareaItem } from '@ant-design/react-native';
 import { ListItem, Button, Overlay } from 'react-native-elements';
-import Loader from './Loader';
 import styled from 'styled-components';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { gql } from 'apollo-boost';
+import Loader from './Loader';
 import CommentLink from './CommentLink';
 import useInput from '../hooks/useInput';
 import { SEARCH_HOBBY_QUERY } from '../screens/Tabs/TabsQueries';
+import { HOBBY_DETAIL } from './Query';
 
 const Bold = styled.Text`
 	font-weight: 500;
@@ -22,44 +27,6 @@ const ButtonGroups = styled.View`
 	flex-direction: row;
 `;
 
-const CustomButton = styled.TouchableOpacity`
-	position: absolute;
-	right: 40;
-	height: 40;
-	width: 40;
-	border-radius: 20;
-	background-color: #2bc0bc;
-`;
-
-export const HOBBY_DETAIL = gql`
-	query seeFullHobby($id: String!) {
-		seeFullHobby(id: $id) {
-			id
-			comments {
-				id
-				text
-				user {
-					id
-					username
-					avatar
-				}
-				isMyComment
-				createdAt
-			}
-			posts {
-				id
-				createdAt
-				title
-				caption
-				isMyPost
-				files {
-					id
-					url
-				}
-			}
-		}
-	}
-`;
 export const ADD_COMMENT = gql`
 	mutation addComment($text: String!, $hobbyId: String!) {
 		addComment(text: $text, hobbyId: $hobbyId)
@@ -84,7 +51,7 @@ export default ({ navigation, id, switchs, information, caption, posts }) => {
 	});
 	const addComment = async () => {
 		if (textInput.value === '') {
-			Alert.alert('댓글을 입력해주세요!');
+			Alert.alert('방명록을 입력해주세요!');
 			return;
 		}
 		try {
@@ -99,13 +66,13 @@ export default ({ navigation, id, switchs, information, caption, posts }) => {
 				]
 			});
 			if (addComment) {
-				Alert.alert('댓글 등록 성공');
+				Alert.alert('방명록 작성 완료');
 				setVisible(false);
 				textInput.onChange('');
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('댓글 등록 실패.', '다시 시도해주세요.');
+			Alert.alert('방명록 등록 실패!', '다시 시도해주세요.');
 		}
 	};
 	switch (switchs) {
@@ -225,7 +192,7 @@ export default ({ navigation, id, switchs, information, caption, posts }) => {
 		default:
 			return (
 				<View>
-					<Text>ERROR</Text>
+					<Text>에러!</Text>
 				</View>
 			);
 	}

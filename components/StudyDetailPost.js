@@ -1,18 +1,12 @@
+/*
+	StudyDetailPost
+	- 스터디 상세정보 Component
+*/
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-const Container = styled.TouchableOpacity`
-	background-color: ${(props) => (props.studyEnd === 2 ? props.theme.darkGreyColor : props.theme.whiteColor)};
-	border-radius: 50px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	border: 7px solid #c3fae8;
-	border-color: ${(props) => (props.studyEnd === 2 ? props.theme.blackColor : '#c3fae8')};
-`;
 
 const Header = styled.View`
 	flex-direction: row;
@@ -20,17 +14,9 @@ const Header = styled.View`
 	margin-bottom: 10px;
 `;
 
-const Body = styled.View`padding: 15px;`;
-
 const Touchable = styled.TouchableOpacity``;
 
 const HeaderUserContainer = styled.View`margin-left: 10px;`;
-
-const TBold = styled.Text`
-	font-weight: 700;
-	color: ${(props) => (props.studyEnd === 2 ? props.theme.lightGreyColor : props.theme.blackColor)};
-	margin-bottom: 5px;
-`;
 
 const Bold = styled.Text`
 	font-weight: 500;
@@ -43,7 +29,7 @@ const End = styled.Text`
 	color: ${(props) => (props.studyEnd === 2 ? props.theme.redColor : props.theme.blueColor)};
 `;
 
-const StudyDetailPost = ({ id, navigation, user, title, job, area, caption, information, time, studyEnd }) => {
+const StudyDetailPost = ({ user, title, job, area, caption, information, time, studyEnd }) => {
 	return (
 		<Card title={title}>
 			<View>

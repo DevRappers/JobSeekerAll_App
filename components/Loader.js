@@ -1,3 +1,7 @@
+/*
+	Loader
+	- Loading화면 Component
+*/
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components';

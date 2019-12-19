@@ -1,3 +1,7 @@
+/*
+	HobbyLink
+	- 취미모임 삭제, 수정, 업로드로 가는 Link를 제공하는 component
+*/
 import React from 'react';
 import { Platform, Alert } from 'react-native';
 import { ActionSheet } from '@ant-design/react-native';
@@ -39,7 +43,7 @@ export default withNavigation(({ navigation }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			Alert.alert('삭제를 실패하였습니다.', '다시 시도해주세요.');
+			Alert.alert('취미모임 삭제실패!', '다시 시도해주세요.');
 		}
 	};
 
@@ -47,7 +51,7 @@ export default withNavigation(({ navigation }) => {
 		const BUTTONS = [ '모임삭제', '모임수정', '공고업로드', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '내 모임 관리',
+				title: '취미모임 관리',
 				options: BUTTONS,
 				cancelButtonIndex: 3,
 				destructiveButtonIndex: 0

@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+/*
+	PostForm
+	- 포스트 생성, 수정 할때 사용하는 컴포넌트 
+*/
+import React from 'react';
 import { ActivityIndicator, Image } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
@@ -55,7 +59,7 @@ export default ({
 		const BUTTONS = [ '앨범에서 선택하기', '사진촬영', '취소' ];
 		ActionSheet.showActionSheetWithOptions(
 			{
-				title: '분야설정',
+				title: '사진업로드',
 				options: BUTTONS,
 				cancelButtonIndex: 2
 			},
@@ -89,7 +93,7 @@ export default ({
 						onFocus={showImageSheet}
 						onChangeText={showImageSheet}
 						value={imageInput.value}
-						placeholder="공고 포스터를 올려주세요."
+						placeholder="공고 포스터 업로드"
 						multiline={true}
 						placeholderTextColor={styles.darkGreyColor}
 					/>

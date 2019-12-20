@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, StatusBar } from 'react-native';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 import ApolloClient from 'apollo-boost';
@@ -73,6 +73,7 @@ export default function App() {
 		<ApolloProvider client={client}>
 			<ThemeProvider theme={styles}>
 				<AuthProvider isLoggedIn={isLoggedIn}>
+					<StatusBar barStyle="dark-content" />
 					<NavController />
 				</AuthProvider>
 			</ThemeProvider>

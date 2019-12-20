@@ -13,7 +13,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import styles from '../styles';
 import StudyLink from '../components/StudyLink';
 import NavIcon from '../components/NavIcon';
-import MessagesLink from '../components/MessagesLink';
 import HobbyLink from '../components/HobbyLink';
 import PostLink from '../components/PostLink';
 import Home from '../screens/Tabs/Home';
@@ -128,7 +127,6 @@ export default (TabNavigation = createBottomTabNavigator(
 	{
 		Home: {
 			screen: stackFactory(Home, {
-				headerRight: <MessagesLink />,
 				title: '취준모아'
 			}),
 			navigationOptions: {

@@ -7,14 +7,12 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import TabNavigation from './TabNavigation';
 import PostNavigation from './PostNavigation';
-import MessageNavigation from './MessageNavigation';
 import { stackStyles } from './config';
 
 const MainNavigation = createStackNavigator(
 	{
 		TabNavigation,
-		PostNavigation,
-		MessageNavigation
+		PostNavigation
 	},
 	{
 		defaultNavigationOptions: {

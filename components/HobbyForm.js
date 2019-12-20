@@ -3,7 +3,7 @@
 	- 취미모임 생성, 수정 템플릿 Component
 */
 import React from 'react';
-import { ActivityIndicator, Image } from 'react-native';
+import { ActivityIndicator, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
@@ -90,55 +90,57 @@ export default ({
 		);
 	};
 	return (
-		<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
-			<Container>
-				<Form>
-					<STextInput
-						onChangeText={titleInput.onChange}
-						value={titleInput.value}
-						placeholder="취미모임명"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<View>
-						<Image source={{ uri }} style={{ height: heights, width: 80, alignItems: 'center' }} />
-					</View>
-					<STextInput
-						onFocus={showImageSheet}
-						onChangeText={showImageSheet}
-						value={imageInput.value}
-						placeholder="대표사진을 선택"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onFocus={showActionSheet}
-						onChangeText={showActionSheet}
-						value={areaInput.value}
-						placeholder="지역"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onChangeText={captionInput.onChange}
-						value={captionInput.value}
-						placeholder="간단한 소개"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<TextareaItem
-						onChangeText={informationInput.onChange}
-						value={informationInput.value}
-						rows={4}
-						placeholder="취미모임 설명"
-						count={100}
-						style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
-					/>
-					<Button onPress={handleSubmit}>
-						{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
-					</Button>
-				</Form>
-			</Container>
-		</Card>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
+				<Container>
+					<Form>
+						<STextInput
+							onChangeText={titleInput.onChange}
+							value={titleInput.value}
+							placeholder="취미모임명"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<View>
+							<Image source={{ uri }} style={{ height: heights, width: 80, alignItems: 'center' }} />
+						</View>
+						<STextInput
+							onFocus={showImageSheet}
+							onChangeText={showImageSheet}
+							value={imageInput.value}
+							placeholder="대표사진을 선택"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onFocus={showActionSheet}
+							onChangeText={showActionSheet}
+							value={areaInput.value}
+							placeholder="지역"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onChangeText={captionInput.onChange}
+							value={captionInput.value}
+							placeholder="간단한 소개"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<TextareaItem
+							onChangeText={informationInput.onChange}
+							value={informationInput.value}
+							rows={4}
+							placeholder="취미모임 설명"
+							count={100}
+							style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
+						/>
+						<Button onPress={handleSubmit}>
+							{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
+						</Button>
+					</Form>
+				</Container>
+			</Card>
+		</TouchableWithoutFeedback>
 	);
 };

@@ -3,7 +3,7 @@
 	- 스터디 생성, 수정 할때 사용하는 Form컴포넌트
 */
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
@@ -65,58 +65,60 @@ export default ({
 		);
 	};
 	return (
-		<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
-			<Container>
-				<Form>
-					<STextInput
-						onChangeText={titleInput.onChange}
-						value={titleInput.value}
-						placeholder="스터디명"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onFocus={showActionSheet}
-						onChangeText={showActionSheet}
-						value={jobInput.value}
-						placeholder="분야"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onChangeText={areaInput.onChange}
-						value={areaInput.value}
-						placeholder="지역"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onChangeText={informationInput.onChange}
-						value={informationInput.value}
-						placeholder="지원방법"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<STextInput
-						onChangeText={timeInput.onChange}
-						value={timeInput.value}
-						placeholder="진행시간"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<TextareaItem
-						onChangeText={captionInput.onChange}
-						value={captionInput.value}
-						rows={4}
-						placeholder="스터디소개"
-						count={100}
-						style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
-					/>
-					<Button onPress={handleSubmit}>
-						{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
-					</Button>
-				</Form>
-			</Container>
-		</Card>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
+				<Container>
+					<Form>
+						<STextInput
+							onChangeText={titleInput.onChange}
+							value={titleInput.value}
+							placeholder="스터디명"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onFocus={showActionSheet}
+							onChangeText={showActionSheet}
+							value={jobInput.value}
+							placeholder="분야"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onChangeText={areaInput.onChange}
+							value={areaInput.value}
+							placeholder="지역"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onChangeText={informationInput.onChange}
+							value={informationInput.value}
+							placeholder="지원방법"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<STextInput
+							onChangeText={timeInput.onChange}
+							value={timeInput.value}
+							placeholder="진행시간"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<TextareaItem
+							onChangeText={captionInput.onChange}
+							value={captionInput.value}
+							rows={4}
+							placeholder="스터디소개"
+							count={100}
+							style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
+						/>
+						<Button onPress={handleSubmit}>
+							{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
+						</Button>
+					</Form>
+				</Container>
+			</Card>
+		</TouchableWithoutFeedback>
 	);
 };

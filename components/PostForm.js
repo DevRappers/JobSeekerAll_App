@@ -3,7 +3,7 @@
 	- 포스트 생성, 수정 할때 사용하는 컴포넌트 
 */
 import React from 'react';
-import { ActivityIndicator, Image } from 'react-native';
+import { ActivityIndicator, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
@@ -76,40 +76,42 @@ export default ({
 		);
 	};
 	return (
-		<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
-			<Container>
-				<Form>
-					<STextInput
-						onChangeText={titleInput.onChange}
-						value={titleInput.value}
-						placeholder="공고명"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<View>
-						<Image source={{ uri }} style={{ height: heights, width: 80, alignItems: 'center' }} />
-					</View>
-					<STextInput
-						onFocus={showImageSheet}
-						onChangeText={showImageSheet}
-						value={imageInput.value}
-						placeholder="공고 포스터 업로드"
-						multiline={true}
-						placeholderTextColor={styles.darkGreyColor}
-					/>
-					<TextareaItem
-						onChangeText={captionInput.onChange}
-						value={captionInput.value}
-						rows={4}
-						placeholder="공고내용"
-						count={100}
-						style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
-					/>
-					<Button onPress={handleSubmit}>
-						{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
-					</Button>
-				</Form>
-			</Container>
-		</Card>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
+				<Container>
+					<Form>
+						<STextInput
+							onChangeText={titleInput.onChange}
+							value={titleInput.value}
+							placeholder="공고명"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<View>
+							<Image source={{ uri }} style={{ height: heights, width: 80, alignItems: 'center' }} />
+						</View>
+						<STextInput
+							onFocus={showImageSheet}
+							onChangeText={showImageSheet}
+							value={imageInput.value}
+							placeholder="공고 포스터 업로드"
+							multiline={true}
+							placeholderTextColor={styles.darkGreyColor}
+						/>
+						<TextareaItem
+							onChangeText={captionInput.onChange}
+							value={captionInput.value}
+							rows={4}
+							placeholder="공고내용"
+							count={100}
+							style={{ borderBottomColor: 'rgb(230, 230, 230)', borderBottomWidth: 1, fontSize: 14 }}
+						/>
+						<Button onPress={handleSubmit}>
+							{loading ? <ActivityIndicator color="white" /> : <Text>{btnName}</Text>}
+						</Button>
+					</Form>
+				</Container>
+			</Card>
+		</TouchableWithoutFeedback>
 	);
 };

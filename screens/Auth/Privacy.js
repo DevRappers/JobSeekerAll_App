@@ -87,23 +87,23 @@ export default ({ navigation }) => {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View>
-				<AuthInput {...usernameInput} placeholder="사용자이름" returnKeyType="send" autoCorrect={false} />
+				<AuthInput {...usernameInput} placeholder="사용자이름" returnKeyType="next" autoCorrect={false} />
 				<AuthInput
 					{...emailInput}
 					placeholder="이메일"
 					keyboardType="email-address"
-					returnKeyType="send"
+					returnKeyType="next"
 					autoCorrect={false}
 				/>
-				<AuthInput {...passInput} placeholder="비밀번호" returnKeyType="send" autoCorrect={false} secureTextEntry />
+				<AuthInput {...passInput} placeholder="비밀번호" returnKeyType="next" autoCorrect={false} secureTextEntry />
 				<AuthInput
 					{...ageInput}
 					placeholder="나이"
 					keyboardType="number-pad"
-					returnKeyType="send"
+					returnKeyType="next"
 					autoCorrect={false}
 				/>
-				<AuthInput {...departmentInput} placeholder="활동분야 또는 학과" returnKeyType="send" autoCorrect={false} />
+				<AuthInput {...departmentInput} placeholder="활동분야 또는 학과" returnKeyType="next" autoCorrect={false} />
 				<AuthInput {...areaInput} placeholder="활동지역" returnKeyType="send" autoCorrect={false} />
 				<Views />
 				<AuthButton loading={loading} onPress={handleSingup} text="회원가입" />

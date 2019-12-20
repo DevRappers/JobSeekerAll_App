@@ -98,7 +98,7 @@ export default ({ navigation }) => {
 					{...emailInput}
 					placeholder="이메일"
 					keyboardType="email-address"
-					returnKeyType="send"
+					returnKeyType="next"
 					autoCorrect={false}
 				/>
 				<AuthInput

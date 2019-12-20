@@ -12,7 +12,7 @@ const Container = styled.TouchableOpacity`
 	border-radius: 50px;
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-top: 10px;
 	border: 7px solid #c3fae8;
 	border-color: ${(props) => (props.studyEnd === 2 ? props.theme.blackColor : '#c3fae8')};
 `;

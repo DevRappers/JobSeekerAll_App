@@ -9,7 +9,7 @@ import { Grid } from '@ant-design/react-native';
 
 export default ({ data, navigation }) => {
 	return (
-		<View style={[ { padding: 10 } ]}>
+		<View style={[ { padding: 5 } ]}>
 			<Grid
 				data={data}
 				columnNum={2}
@@ -46,14 +46,15 @@ export default ({ data, navigation }) => {
 					<Card title={data[index].title}>
 						<View>
 							<Image
-								style={{ height: 100, width: '100%', resizeMode: 'contain' }}
+								resizeMode="cover"
+								style={{ height: 90, width: '100%' }}
 								source={{ uri: data[index].proImage }}
 							/>
 						</View>
 					</Card>
 				)}
 				itemStyle={{
-					marginBottom: 10
+					marginBottom: 5
 				}}
 			>
 				<Text>dd</Text>

@@ -63,9 +63,7 @@ export default ({ navigation }) => {
 		) {
 			Alert.alert('모든 필드를 입력해주세요!');
 		}
-
-		let imgPath = '';
-
+		let imgLink = '';
 		if (photo !== undefined) {
 			const formData = new FormData();
 			const name = photo.filename;
@@ -76,12 +74,12 @@ export default ({ navigation }) => {
 				uri: photo.uri
 			});
 
-			const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
+			const { data: { location } } = await axios.post('http://localhost:4000/api/upload', formData, {
 				headers: {
 					'content-type': 'multipart/form-data'
 				}
 			});
-			imgPath = path;
+			imgLink = location;
 		}
 		try {
 			setIsLoading(true);
@@ -92,7 +90,7 @@ export default ({ navigation }) => {
 					caption: captionInput.value,
 					information: informationInput.value,
 					area: areaInput.value,
-					proImage: photo !== undefined ? 'http://localhost:4000/' + imgPath : uri
+					proImage: photo !== undefined ? imgLink : uri
 				}
 			});
 			if (editHobby) {

@@ -65,7 +65,7 @@ export default ({ navigation }) => {
 			uri: photo.uri
 		});
 
-		const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
+		const { data: { location } } = await axios.post('http://localhost:4000/api/upload', formData, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
@@ -76,7 +76,7 @@ export default ({ navigation }) => {
 			const { data: { createHobby } } = await uploadMutation({
 				variables: {
 					title: titleInput.value,
-					proImage: 'http://localhost:4000/' + path,
+					proImage: location,
 					caption: captionInput.value,
 					information: informationInput.value,
 					area: areaInput.value

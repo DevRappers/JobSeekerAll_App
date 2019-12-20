@@ -57,7 +57,7 @@ export default ({ navigation }) => {
 			uri: photo.uri
 		});
 
-		const { data: { path } } = await axios.post('http://localhost:4000/api/upload', formData, {
+		const { data: { location } } = await axios.post('http://localhost:4000/api/upload', formData, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
@@ -69,7 +69,7 @@ export default ({ navigation }) => {
 				variables: {
 					title: titleInput.value,
 					caption: captionInput.value,
-					files: [ 'http://localhost:4000/' + path ],
+					files: location,
 					hId: hId
 				}
 			});

@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "취준모아 앱",
+    "githubUrl": "https://github.com/DevRappers/JobSeekerAll_App"
   }
 }

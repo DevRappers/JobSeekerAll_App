@@ -6,6 +6,8 @@
 
 ## 취준모아 스크린샷
 ### 👩‍💻 회원가입 및 로그인 
+취준모아의 홈화면으로 로그인 또는 가입이 가능하며 가입은 이메일가입, 페이스북, 구글 가입이 가능함. 첫번째로 로그인 시 이메일 인증단계를 가지고 있음.
+
 <div>
     <img src="screenshot/1.jpeg" width="200"/>
     <img src="screenshot/2.jpeg" width="200"/>
@@ -15,14 +17,46 @@
 
 ### 🏠 홈화면 
 취업준비생들에게 도움을 줄 수 있는 포스트들이 나오도록 구현 ( 취업준비생들에게 좋은 음식, 공모전 소식 등)
+
 <div>
     <img src="screenshot/5.png" width="200"/>
 </div>
 
 ### 📕 스터디화면
 회원들이 모집하는 스터디를 확인할 수 있으며, 스터디 종류별 정렬을 통하여 자신이 원하는 스터디를 찾아서 활동할 수 있게끔 구현했으며 자신의 스터디라면 삭제 또는 수정 또는 모집마감 할 수 있게끔 구현
+
 <div>
     <img src="screenshot/6.png" width="200"/>
     <img src="screenshot/7.png" width="200"/>
     <img src="screenshot/8.png" width="200"/>
+</div>
+
+### 👬 취미모임
+회원들이 모집하는 취미모임을 지역별로 확인할 수 있으며, 취미모임 상세페이지로 들어가면 취미모임에 대한 간단한 설명과 모집공고 또 방명록을 남길 수 있으며 확인이 가능하도록 하였고 자신의 취미모임이라면 공고관리(수정,삭제) 및 취미모임 관리(수정,삭제) 가능하도록 구현.
+
+<div>
+    <img src="screenshot/9.png" width="200"/>
+    <img src="screenshot/10.png" width="200"/>
+    <img src="screenshot/11.png" width="200"/>
+    <img src="screenshot/12.png" width="200"/>
+</div>
+<div>
+    <img src="screenshot/13.png" width="200"/>
+    <img src="screenshot/14.png" width="200"/>
+</div>
+
+### 🎉 새로운 생성(스터디, 취미모임)
+새로운 스터디 또는 취미모임을 생성할 수 있음
+
+<div>
+    <img src="screenshot/15.png" width="200"/>
+    <img src="screenshot/16.png" width="200"/>
+</div>
+
+### 🔒 회원정보 관리
+나의 스터디 또는 나의 취미모임을 확인할 수 있으며 로그아웃 회원탈퇴가 가능하고 닉네임 변경이 가능함.
+
+<div>
+    <img src="screenshot/17.png" width="200"/>
+    <img src="screenshot/18.png" width="200"/>
 </div>

@@ -13,7 +13,7 @@ backend가 서버에 올라가 있기때문에 expo만 시작시키면 사용 �
 or (Android폰 사용자일 경우)
 <a href="./jobseekerall_app-68ecabe255a94a8eafdb56b5ab3c18cb-signed.apk">APK Download</a>
 
-## 취준모아 스크린샷
+## 📸 취준모아 스크린샷
 ### 👩‍💻 회원가입 및 로그인 
 취준모아의 홈화면으로 로그인 또는 가입이 가능하며 가입은 이메일가입, 페이스북, 구글 가입이 가능함. 첫번째로 로그인 시 이메일 인증단계를 가지고 있음.
 

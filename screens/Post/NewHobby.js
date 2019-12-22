@@ -65,7 +65,7 @@ export default ({ navigation }) => {
 			uri: photo.uri
 		});
 
-		const { data: { location } } = await axios.post('http://localhost:4000/api/upload', formData, {
+		const { data: { location } } = await axios.post('https://jobseekerall.herokuapp.com/api/upload', formData, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}

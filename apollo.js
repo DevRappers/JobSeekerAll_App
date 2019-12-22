@@ -1,5 +1,5 @@
 const apolloClientOptions = {
-	uri: 'http://localhost:4000'
+	uri: 'https://jobseekerall.herokuapp.com'
 };
 
 export default apolloClientOptions;

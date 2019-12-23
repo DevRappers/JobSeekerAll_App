@@ -3,7 +3,7 @@
 	- 포스트 생성, 수정 할때 사용하는 컴포넌트 
 */
 import React from 'react';
-import { ActivityIndicator, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { ActivityIndicator, Image, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { TextareaItem, ActionSheet } from '@ant-design/react-native';
 import { Card } from 'react-native-elements';
 import styled from 'styled-components';
@@ -77,7 +77,7 @@ export default ({
 	};
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 50 }}>
+			<Card title={title} containerStyle={{ alignItems: 'center', marginTop: 10 }}>
 				<Container>
 					<Form>
 						<STextInput

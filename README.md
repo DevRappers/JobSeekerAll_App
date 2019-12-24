@@ -11,7 +11,7 @@ backend가 서버에 올라가 있기때문에 expo만 시작시키면 사용 �
 3. yarn start 
 
 or (Android폰 사용자일 경우)
-<a href="./jobseekerall_app-818facd38b0e4307a6e33a130a1b8749-signed.apk">APK Download</a>
+<a href="./jobseekerall_app-70206e6ea72949b293b04582ae3879aa-signed.apk">APK Download</a>
 
 ## 📸 취준모아 스크린샷
 ### 👩‍💻 회원가입 및 로그인 

@@ -138,23 +138,20 @@ export default ({ navigation, id, switchs, information, caption, posts }) => {
 								count={50}
 								style={{ fontSize: 14 }}
 							/>
-							<ButtonGroups>
-								<Button
-									title="확인"
-									type="outline"
-									style={{ marginRight: 5, marginLeft: 210 }}
-									onPress={addComment}
-								/>
-								<Button
-									title="취소"
-									type="outline"
-									style={{ width: 50, alignItems: 'flex-end' }}
-									onPress={() => {
-										setVisible(false);
-										textInput.onChange('');
-									}}
-								/>
-							</ButtonGroups>
+							<View style={{ alignItems: 'flex-end' }}>
+								<ButtonGroups>
+									<Button title="확인" type="outline" style={{ marginRight: 5 }} onPress={addComment} />
+									<Button
+										title="취소"
+										type="outline"
+										style={{ width: 50, alignItems: 'flex-end' }}
+										onPress={() => {
+											setVisible(false);
+											textInput.onChange('');
+										}}
+									/>
+								</ButtonGroups>
+							</View>
 						</View>
 					</Overlay>
 					{loading ? (

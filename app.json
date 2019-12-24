@@ -1,36 +1,36 @@
 {
-    "expo": {
-        "name": "jobseekerall_app",
-        "slug": "jobseekerall_app",
-        "privacy": "public",
-        "sdkVersion": "36.0.0",
-        "platforms": [
-            "ios",
-            "android",
-            "web"
-        ],
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/icon.png",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "updates": {
-            "fallbackToCacheTimeout": 0
-        },
-        "assetBundlePatterns": [
-            "**/*"
-        ],
-        "ios": {
-            "bundleIdentifier": "com.devrappers.jobseekerall",
-            "supportsTablet": true
-        },
-        "android": {
-            "package": "com.devrappers.jobseekerall"
-        },
-        "description": "취준모아 앱",
-        "githubUrl": "https://github.com/DevRappers/JobSeekerAll_App"
-    }
+  "expo": {
+    "name": "jobseekerall_app",
+    "slug": "jobseekerall_app",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.devrappers.jobseekerall",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.devrappers.jobseekerall"
+    },
+    "description": "취준모아 앱",
+    "githubUrl": "https://github.com/DevRappers/JobSeekerAll_App"
+  }
 }

@@ -1,7 +1,7 @@
 /*
     2020/01/10
     Auth관련 Context -> Redux로 수정 
-    auth모듈 생성
+	auth모듈 생성
 */
 import { AsyncStorage } from 'react-native';
 
@@ -13,14 +13,12 @@ const USER_LOGOUT = 'auth/USER_LOGOUT';
 
 // 로그인
 export const useLogIn = (token) => async (dispatch) => {
-	await AsyncStorage.setItem('isLoggedIn', 'true');
 	await AsyncStorage.setItem('jwt', token);
 	dispatch({ type: USER_LOGIN });
 };
 
 // 로그아웃
 export const useLogOut = () => async (dispatch) => {
-	await AsyncStorage.setItem('isLoggedIn', 'false');
 	await AsyncStorage.clear();
 	dispatch({ type: USER_LOGOUT });
 };

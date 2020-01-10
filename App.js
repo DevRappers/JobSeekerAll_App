@@ -9,18 +9,17 @@ import { persistCache } from 'apollo-cache-persist';
 import ApolloClient from 'apollo-boost';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from 'react-apollo-hooks';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
+import { PersistGate } from 'redux-persist/integration/react';
 import apolloClientOptions from './apollo';
 import styles from './styles';
 import NavController from './components/NavController';
-import rootReducer from './modules';
-
-// 스토어 생성
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+import configureStore from './store';
 
 export default function App() {
+	// store, persistor 불러오기
+	const { store, persistor } = configureStore();
+
 	// 로딩관련, client관련, 로그인관련 state
 	const [ loaded, setLoaded ] = useState(false);
 	const [ client, setClient ] = useState(null);
@@ -71,8 +70,10 @@ export default function App() {
 		<ApolloProvider client={client}>
 			<ThemeProvider theme={styles}>
 				<Provider store={store}>
-					<StatusBar barStyle="dark-content" />
-					<NavController />
+					<PersistGate persistor={persistor}>
+						<StatusBar barStyle="dark-content" />
+						<NavController />
+					</PersistGate>
 				</Provider>
 			</ThemeProvider>
 		</ApolloProvider>

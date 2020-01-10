@@ -13,6 +13,8 @@ const USER_LOGOUT = 'auth/USER_LOGOUT';
 
 // 로그인
 export const useLogIn = (token) => async (dispatch) => {
+	// 기존의 App.js apollo client에서 token정보를 불러오는 부분이 있기 때문에
+	// state가 아닌 token정보를 AsyncStorage를 사용하여 저장
 	await AsyncStorage.setItem('jwt', token);
 	dispatch({ type: USER_LOGIN });
 };

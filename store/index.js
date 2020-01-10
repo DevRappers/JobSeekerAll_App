@@ -8,6 +8,7 @@ import { AsyncStorage } from 'react-native';
 import ReduxThunk from 'redux-thunk';
 import rootReducer from '../modules';
 
+// persistConfig 설정 storage를 AsyncStorage로 설정함
 const persistConfig = {
 	key: 'root',
 	storage: AsyncStorage

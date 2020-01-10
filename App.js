@@ -24,7 +24,6 @@ export default function App() {
 	const [ loaded, setLoaded ] = useState(false);
 	const [ client, setClient ] = useState(null);
 
-	// AsyncStorage에서 여러 정보를 가져오는 함수
 	const preLoad = async () => {
 		try {
 			// 폰트 불러오기
@@ -65,7 +64,7 @@ export default function App() {
 		preLoad();
 	}, []);
 
-	// 로딩이 완료되고 client가 있으며 로그인상태가 null이 아닐경우 화면을 보여주고 그렇지 않을 경우 로딩창 출력
+	// 로딩이 완료되고 client가 있으면 화면을 보여주고 그렇지 않을 경우 로딩창 출력
 	return loaded && client !== null ? (
 		<ApolloProvider client={client}>
 			<ThemeProvider theme={styles}>

@@ -6,11 +6,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useMutation } from 'react-apollo-hooks';
+import { useDispatch } from 'react-redux';
+import { useLogIn } from '../../modules/auth';
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
 import { CONFIRM_SECRET } from './AuthQueries';
-import { useLogIn } from '../../AuthContext';
 
 const View = styled.View`
 	background-color: ${(props) => props.theme.mintColor};
@@ -20,8 +21,11 @@ const View = styled.View`
 `;
 
 export default ({ navigation }) => {
+	const dispatch = useDispatch();
+
+	const logIn = (token) => dispatch(useLogIn(token));
+
 	const confirmInput = useInput('');
-	const logIn = useLogIn();
 	const [ loading, setLoading ] = useState(false);
 	const [ confirmSecretMutation ] = useMutation(CONFIRM_SECRET, {
 		variables: {

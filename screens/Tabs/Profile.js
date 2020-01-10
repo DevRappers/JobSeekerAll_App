@@ -7,9 +7,10 @@ import { ScrollView, TouchableOpacity, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from 'react-apollo-hooks';
+import { useDispatch } from 'react-redux';
+import { useLogOut } from '../../modules/auth';
 import { Modal, Provider } from '@ant-design/react-native';
 import Loader from '../../components/Loader';
-import { useLogOut } from '../../AuthContext';
 import { USER_FRAGMENT } from '../../fragments';
 import { DELETE_USER, CHANGE_USERNAME } from './TabsQueries';
 
@@ -23,6 +24,10 @@ export const ME = gql`
 `;
 
 export default ({ navigation }) => {
+	const dispatch = useDispatch();
+
+	const logOut = () => dispatch(useLogOut());
+
 	const [ changeUserMutation ] = useMutation(CHANGE_USERNAME);
 
 	const [ deleteUserMutation ] = useMutation(DELETE_USER);
@@ -40,8 +45,6 @@ export default ({ navigation }) => {
 	useEffect(() => {
 		refetchData();
 	}, []);
-
-	const logOut = useLogOut();
 
 	const logOutButton = () => {
 		Alert.alert(

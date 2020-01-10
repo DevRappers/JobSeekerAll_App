@@ -6,11 +6,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useMutation } from 'react-apollo-hooks';
+import { useDispatch } from 'react-redux';
+import { useLogIn } from '../../modules/auth';
 import AuthButtton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
 import { REQUEST_SECRET, LOG_IN } from './AuthQueries';
-import { useLogIn } from '../../AuthContext';
 
 const View = styled.View`
 	background-color: ${(props) => props.theme.mintColor};
@@ -31,6 +32,10 @@ const LoginLinkText = styled.Text`
 `;
 
 export default ({ navigation }) => {
+	const dispatch = useDispatch();
+
+	const logIn = (token) => dispatch(useLogIn(token));
+
 	// emailInput과 passwordInput
 	const emailInput = useInput(navigation.getParam('email', ''));
 	const passwordInput = useInput('');
@@ -52,8 +57,6 @@ export default ({ navigation }) => {
 			password: passwordInput.value
 		}
 	});
-
-	const logIn = useLogIn();
 
 	const handleLogin = async () => {
 		// 이메일 유효성 검사

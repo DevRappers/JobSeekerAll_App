@@ -9,16 +9,21 @@ import { persistCache } from 'apollo-cache-persist';
 import ApolloClient from 'apollo-boost';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from 'react-apollo-hooks';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
 import apolloClientOptions from './apollo';
 import styles from './styles';
 import NavController from './components/NavController';
-import { AuthProvider } from './AuthContext';
+import rootReducer from './modules';
+
+// 스토어 생성
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 export default function App() {
 	// 로딩관련, client관련, 로그인관련 state
 	const [ loaded, setLoaded ] = useState(false);
 	const [ client, setClient ] = useState(null);
-	const [ isLoggedIn, setIsLoggedIn ] = useState(null);
 
 	// AsyncStorage에서 여러 정보를 가져오는 함수
 	const preLoad = async () => {
@@ -49,13 +54,6 @@ export default function App() {
 				...apolloClientOptions
 			});
 
-			const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
-			if (isLoggedIn === null || isLoggedIn === 'false') {
-				setIsLoggedIn(false);
-			} else {
-				setIsLoggedIn(true);
-			}
-
 			setLoaded(true);
 			setClient(client);
 		} catch (e) {
@@ -69,13 +67,13 @@ export default function App() {
 	}, []);
 
 	// 로딩이 완료되고 client가 있으며 로그인상태가 null이 아닐경우 화면을 보여주고 그렇지 않을 경우 로딩창 출력
-	return loaded && client && isLoggedIn !== null ? (
+	return loaded && client !== null ? (
 		<ApolloProvider client={client}>
 			<ThemeProvider theme={styles}>
-				<AuthProvider isLoggedIn={isLoggedIn}>
+				<Provider store={store}>
 					<StatusBar barStyle="dark-content" />
 					<NavController />
-				</AuthProvider>
+				</Provider>
 			</ThemeProvider>
 		</ApolloProvider>
 	) : (

@@ -21,12 +21,14 @@ export const useLogIn = (token) => async (dispatch) => {
 
 // 로그아웃
 export const useLogOut = () => async (dispatch) => {
+	// 로그아웃시 AsyncStorage클리어
 	await AsyncStorage.clear();
 	dispatch({ type: USER_LOGOUT });
 };
 
 // 초기 상태
 const initialState = {
+	// 로그인 여부, 토큰은 AsyncStorage로 따로 저장해주기 때문에 state설정X
 	isLoggedIn: false
 };
 

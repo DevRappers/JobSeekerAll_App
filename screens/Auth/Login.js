@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useMutation } from 'react-apollo-hooks';
 import { useDispatch } from 'react-redux';
-import { useLogIn } from '../../modules/auth';
+import { useLogIn } from '../../redux/modules/auth';
 import AuthButtton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';

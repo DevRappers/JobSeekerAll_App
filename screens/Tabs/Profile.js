@@ -8,7 +8,7 @@ import { ListItem } from 'react-native-elements';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { useDispatch } from 'react-redux';
-import { useLogOut } from '../../modules/auth';
+import { useLogOut } from '../../redux/modules/auth';
 import { Modal, Provider } from '@ant-design/react-native';
 import Loader from '../../components/Loader';
 import { USER_FRAGMENT } from '../../fragments';

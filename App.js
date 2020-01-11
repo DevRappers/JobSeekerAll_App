@@ -14,7 +14,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import apolloClientOptions from './apollo';
 import styles from './styles';
 import NavController from './components/NavController';
-import configureStore from './store';
+import configureStore from './redux/store';
 
 export default function App() {
 	// store, persistor 불러오기

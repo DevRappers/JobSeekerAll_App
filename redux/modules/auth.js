@@ -6,6 +6,7 @@
 import { AsyncStorage } from 'react-native';
 
 // 액션 타입
+// 성공시의 로딩이나 다른 변화가 주어지지 않기때문에 SUCCESS, ERROR는 따로 구현하지 않음.
 const USER_LOGIN = 'auth/USER_LOGIN';
 const USER_LOGOUT = 'auth/USER_LOGOUT';
 
